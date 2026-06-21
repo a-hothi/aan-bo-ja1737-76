@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Europe 2026"/>
+<meta name="theme-color" content="#F6F4EF"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><rect width='180' height='180' rx='44' fill='%231A1916'/><circle cx='90' cy='90' r='52' fill='none' stroke='%23B5862B' stroke-width='5'/><circle cx='90' cy='90' r='9' fill='%23B5862B'/></svg>"/>
+<title>Aanchal &amp; Mom · Europe 2026</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+:root{
+--bg:#EFE7D5;--card:#FBF5E9;
+--ink:#1A1712;--ink2:#5E564A;--muted:#938979;
+--gold:#A67C1A;--gold-d:#7C5C10;--gold-l:#C8A042;--gold-soft:#EFE2C2;
+--jewel:#1E5249;--pop:#D85A3C;--pop2:#2E8BA8;
+--line:#D8CCB2;--line2:#E6DCC6;
+--shadow:0 1px 2px rgba(60,45,15,.05),0 6px 18px rgba(60,45,15,.07);
+--shadow-lg:0 3px 8px rgba(60,45,15,.07),0 18px 36px rgba(60,45,15,.11);
+--serif:ui-serif,Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+html,body{margin:0;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:repeating-linear-gradient(90deg,rgba(166,124,26,.022) 0 1px,transparent 1px 7px);}
+a{color:var(--gold-d);}
+#app{max-width:600px;margin:0 auto;padding:0 18px 112px;}
+.tab{display:none;}
+.tab.active{display:block;animation:fade .4s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
+.ic{width:1.2em;height:1.2em;display:inline-block;vertical-align:-0.18em;flex:0 0 auto;}
+
+.topbar{position:sticky;top:0;z-index:50;background:#1A1712;border-bottom:2px solid var(--gold);padding-top:env(safe-area-inset-top);}
+.topbar .inner{max-width:600px;margin:0 auto;padding:11px 18px;display:flex;align-items:center;justify-content:space-between;}
+.tb-brand{font-family:var(--serif);font-weight:600;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-l);}
+.tb-meta{font-size:10.5px;color:#CFC3A8;letter-spacing:.1em;text-transform:uppercase;}
+
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#1A1712;border-top:2px solid var(--gold);}
+.nav .inner{max-width:600px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom);}
+.nav button{position:relative;appearance:none;border:0;background:none;padding:12px 2px 13px;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9A8F78;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:color .2s;}
+.nav button .ic{width:21px;height:21px;stroke-width:1.5;transition:transform .2s;}
+.nav button.active{color:var(--gold-l);}
+.nav button.active .ic{transform:translateY(1px);}
+.nav button.active::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--gold);}
+
+.hero{padding:26px 0 6px;}
+.deco-hero{position:relative;background:radial-gradient(120% 95% at 50% 0%,#231F17,#15120C);border:1px solid var(--gold-d);border-radius:4px;padding:36px 22px 30px;text-align:center;overflow:hidden;box-shadow:var(--shadow-lg);}
+.deco-hero .sun{position:absolute;top:-34px;left:50%;transform:translateX(-50%);width:240px;opacity:.5;z-index:0;}
+.deco-hero .conf{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+.deco-frame{position:absolute;inset:7px;border:1px solid rgba(200,160,66,.38);border-radius:2px;pointer-events:none;z-index:1;}
+.deco-frame::before,.deco-frame::after{content:"";position:absolute;width:13px;height:13px;border:1.5px solid var(--gold-l);}
+.deco-frame::before{top:-1px;left:-1px;border-right:0;border-bottom:0;}
+.deco-frame::after{right:-1px;bottom:-1px;border-left:0;border-top:0;}
+.deco-eye{position:relative;z-index:2;font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--gold-l);font-weight:600;}
+.deco-title{position:relative;z-index:2;font-family:var(--serif);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:clamp(34px,11vw,46px);line-height:1.02;color:#F3E9CF;margin:12px 0 4px;}
+.deco-rule{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:10px;margin:9px 0 11px;}
+.deco-rule i{height:1px;width:48px;background:linear-gradient(90deg,transparent,var(--gold));}
+.deco-rule i:last-child{background:linear-gradient(90deg,var(--gold),transparent);}
+.deco-rule .dia{width:6px;height:6px;background:var(--gold-l);transform:rotate(45deg);flex:0 0 auto;}
+.deco-sub{position:relative;z-index:2;font-size:12.5px;color:#D9CDB0;letter-spacing:.05em;line-height:1.75;}
+
+.overline{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-d);font-weight:650;}
+.hero .title{font-family:var(--serif);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(28px,8vw,34px);line-height:1.05;margin:8px 0 6px;color:var(--ink);}
+.hero .subtitle{font-size:13px;color:var(--ink2);}
+
+.status{position:relative;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:18px;box-shadow:var(--shadow);margin:18px 0 6px;}
+.status::before{content:"";position:absolute;inset:5px;border:1px solid var(--gold-soft);border-radius:3px;pointer-events:none;}
+.status-l{position:relative;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-d);font-weight:650;}
+.status-big{position:relative;font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.03em;margin:5px 0 3px;display:flex;align-items:center;gap:9px;text-transform:uppercase;}
+.status-sub{position:relative;font-size:13px;color:var(--ink2);}
+.cdot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 auto;}
+
+.sec{display:flex;align-items:center;gap:11px;margin:30px 0 14px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-d);font-weight:650;}
+.sec::before{content:"";width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex:0 0 auto;}
+.sec::after{content:"";flex:1;height:0;border-top:1px solid var(--line);box-shadow:0 3px 0 -2px var(--line);}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:16px;box-shadow:var(--shadow);margin-bottom:11px;}
+.lead{font-size:13.5px;color:var(--ink2);line-height:1.6;}
+.note{font-size:12px;color:var(--muted);margin:10px 0 2px;line-height:1.5;}
+
+.row{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:14px 15px;box-shadow:var(--shadow);margin-bottom:9px;}
+.row-ic{width:36px;height:36px;border-radius:3px;background:var(--ink);color:var(--gold-l);display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.row-ic .ic{width:18px;height:18px;}
+.row-main{min-width:0;flex:1;}
+.row-t{font-weight:600;font-size:14.5px;}
+.row-s{font-size:12.5px;color:var(--ink2);margin-top:2px;}
+
+.stop{display:flex;align-items:center;gap:11px;padding:13px 15px;border:1px solid var(--line);border-radius:5px;background:var(--card);margin-bottom:8px;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s;}
+.stop:active{transform:scale(.99);}
+.stop .idx{font-family:var(--serif);font-size:15px;color:var(--gold-d);font-weight:600;min-width:18px;text-align:center;flex:0 0 auto;}
+.stop .cdot{width:8px;height:8px;}
+.stop .stop-nm{font-weight:600;font-size:15px;}
+.stop .stop-dt{font-size:12px;color:var(--muted);margin-left:auto;letter-spacing:.02em;}
+.stop .chev{color:var(--gold);width:18px;height:18px;}
+
+.cityhead{padding-top:8px;}
+.ch-row{display:flex;align-items:center;gap:9px;}
+.ch-ctry{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);font-weight:600;}
+.ch-nights{margin-left:auto;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--gold-l);padding:5px 11px;border-radius:2px;font-weight:600;}
+.ch-name{font-family:var(--serif);font-size:30px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin:10px 0 0;}
+.ch-rule{height:2px;width:54px;background:linear-gradient(90deg,var(--gold),transparent);margin:8px 0;}
+.ch-sub{font-size:12.5px;color:var(--muted);}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding:16px 0 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.chips::-webkit-scrollbar{display:none;}
+.chips button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:2px;padding:8px 14px;font-size:12px;letter-spacing:.05em;color:var(--ink2);white-space:nowrap;cursor:pointer;display:flex;gap:7px;align-items:center;box-shadow:var(--shadow);transition:transform .12s;font-weight:600;text-transform:uppercase;}
+.chips button:active{transform:scale(.97);}
+.chips button.active{background:var(--ink);color:var(--gold-l);border-color:var(--ink);}
+.chips .cdot{width:7px;height:7px;}
+
+.smap{position:relative;border:1px solid var(--gold);border-radius:4px;overflow:hidden;background:#D8E1DD;box-shadow:var(--shadow);margin:8px 0 10px;line-height:0;padding:4px;}
+.smap::after{content:"";position:absolute;inset:0;border:1px solid rgba(166,124,26,.22);pointer-events:none;z-index:1;border-radius:4px;}
+.smap>svg,.smap>img{display:block;width:100%;height:auto;border-radius:2px;}
+
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink2);margin:4px 0;align-items:center;}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.legend i{width:11px;height:11px;border-radius:50%;display:inline-block;}
+.legend .ic{width:13px;height:13px;color:var(--pop);}
+
+.see{padding:15px 0;border-bottom:1px solid var(--line2);}
+.see:last-child{border-bottom:0;}
+.see-h{display:flex;align-items:center;gap:10px;}
+.pn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:2px;background:var(--ink);color:var(--gold-l);font-size:12px;font-weight:600;flex:0 0 auto;font-family:var(--serif);}
+.see-nm{font-weight:600;font-size:15px;}
+.wy{font-size:13px;color:var(--ink2);line-height:1.55;}
+.wy.mut{color:var(--muted);}
+.see .wy{margin-top:5px;}
+.book{margin-top:10px;background:var(--gold-soft);border:1px solid #E2CF9E;border-left:3px solid var(--gold);border-radius:3px;padding:10px 12px;font-size:12.5px;color:#5E460F;line-height:1.5;display:flex;gap:9px;}
+.book .ic{width:15px;height:15px;color:var(--gold-d);margin-top:1px;}
+.book a{color:var(--gold-d);font-weight:650;text-decoration:none;}
+
+.btns{margin-top:11px;display:flex;gap:8px;flex-wrap:wrap;}
+.btn{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-decoration:none;border:1px solid var(--gold);border-radius:2px;padding:9px 14px;color:var(--gold-d);background:var(--card);display:inline-flex;gap:6px;align-items:center;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s;text-transform:uppercase;}
+.btn:active{transform:scale(.97);}
+.btn .ic{width:15px;height:15px;}
+.btn.solid{background:linear-gradient(180deg,#221E15,#15110A);color:var(--gold-l);border-color:var(--ink);}
+
+.eat a{display:flex;align-items:center;gap:12px;font-size:14px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);border-radius:4px;padding:13px 14px;margin-bottom:8px;box-shadow:var(--shadow);transition:transform .12s;}
+.eat a:active{transform:scale(.99);}
+.eat .e-ic{width:32px;height:32px;border-radius:3px;background:var(--ink);color:var(--gold-l);display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.eat .e-ic .ic{width:16px;height:16px;}
+.eat .e-main{flex:1;min-width:0;display:flex;flex-direction:column;}
+.eat .e-nm{font-weight:600;font-size:14px;}
+.eat .e-nt{font-size:12px;color:var(--muted);margin-top:1px;}
+.eat .chev{color:var(--gold);width:17px;height:17px;}
+
+.facts{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+.fact{display:flex;align-items:center;gap:11px;background:var(--card);padding:12px 14px;font-size:13.5px;}
+.fact .ic{width:17px;height:17px;color:var(--gold-d);flex:0 0 auto;}
+.fact b{font-weight:600;}
+.fact span{color:var(--ink2);margin-left:auto;text-align:right;}
+
+.tl-day{font-size:11px;color:var(--gold-d);letter-spacing:.22em;margin:24px 0 10px;text-transform:uppercase;font-weight:650;display:flex;align-items:center;gap:10px;}
+.tl-day::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex:0 0 auto;}
+.tl-day::after{content:"";flex:1;height:1px;background:var(--line);}
+.tl{display:flex;gap:13px;padding:13px 14px;border:1px solid var(--line);border-radius:4px;background:var(--card);margin-bottom:8px;box-shadow:var(--shadow);align-items:flex-start;}
+.tl.now{border-color:var(--gold);box-shadow:0 0 0 2px rgba(166,124,26,.18),var(--shadow);}
+.tl-ic{width:34px;height:34px;border-radius:3px;background:var(--ink);color:var(--gold-l);display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.tl.now .tl-ic{background:linear-gradient(180deg,var(--gold-l),var(--gold-d));color:#fff;}
+.tl-ic .ic{width:17px;height:17px;}
+.tl-body{min-width:0;flex:1;padding-top:1px;}
+.tl-t{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+.tl-ti{font-weight:600;font-size:14px;margin-top:1px;}
+.tl-ts{font-size:12.5px;color:var(--ink2);margin-top:2px;}
+
+.stepper{display:flex;align-items:center;gap:10px;margin:18px 0 10px;}
+.step{flex:0 0 auto;width:48px;height:52px;border-radius:4px;border:1px solid var(--gold);background:var(--card);color:var(--gold-d);box-shadow:var(--shadow);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:transform .12s;}
+.step:active{transform:scale(.96);}
+.step:disabled{opacity:.3;cursor:default;}
+.step .ic{width:20px;height:20px;}
+.stephead{flex:1;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:9px 12px;box-shadow:var(--shadow);}
+.stephead .sd{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-d);font-weight:650;}
+.stephead .sc{font-family:var(--serif);font-size:19px;margin-top:3px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;justify-content:center;gap:8px;}
+
+.alert{background:var(--gold-soft);border:1px solid #E2CF9E;border-left:4px solid var(--gold);border-radius:4px;padding:16px;margin:0 0 11px;box-shadow:var(--shadow);}
+.alert-h{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:650;color:#5E460F;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em;}
+.alert-h .ic{width:17px;height:17px;color:var(--gold-d);}
+.alert ul{margin:9px 0 0;padding-left:17px;font-size:13px;color:#5E460F;}
+.alert li{margin:7px 0;line-height:1.5;}
+.alert a{color:var(--gold-d);font-weight:650;text-decoration:none;}
+
+.disc{font-size:11.5px;color:var(--muted);margin:18px 0 0;line-height:1.55;}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="inner"><div class="tb-brand">Europe 2026</div><div class="tb-meta">Aanchal &amp; Mom</div></div></div>
+
+<div id="app">
+  <div id="overview" class="tab"></div>
+  <div id="timeline" class="tab"></div>
+  <div id="today" class="tab"></div>
+  <div id="cities" class="tab"></div>
+  <div id="bookings" class="tab"></div>
+</div>
+
+<div class="nav"><div class="inner"></div></div>
+
+<script>
+const START="2026-06-22", END="2026-07-20";
+
+// ===== ICON SET (inline line icons, currentColor) =====
+const IC={
+compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5.3-5.3 2.2 2.2-5.3z"/>',
+calendar:'<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/>',
+pin:'<path d="M12 21c4-4 6-7.2 6-10a6 6 0 1 0-12 0c0 2.8 2 6 6 10z"/><circle cx="12" cy="11" r="2.3"/>',
+buildings:'<rect x="4" y="8" width="6.5" height="12.5" rx="1"/><rect x="13.5" y="3.5" width="6.5" height="17" rx="1"/><path d="M6.6 12h1.3M6.6 15.2h1.3M16 7h1.5M16 10.4h1.5M16 13.8h1.5"/>',
+ticket:'<path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h13A1.5 1.5 0 0 1 20 8.5v2a2 2 0 0 0 0 4v2a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5v-2a2 2 0 0 0 0-4z"/><path d="M14.5 7.5v11" stroke-dasharray="1.4 2"/>',
+plane:'<path d="M10.6 3.3a1.4 1.4 0 0 1 2.8 0V9l7.4 4.3v2L13.4 13v4.1l2.1 1.6v1.6L12 19.3l-3.5 1v-1.6l2.1-1.6V13l-7.4 2.3v-2L10.6 9z"/>',
+train:'<rect x="5.5" y="3.5" width="13" height="13.5" rx="3"/><path d="M5.5 11h13"/><circle cx="9" cy="14" r=".9"/><circle cx="15" cy="14" r=".9"/><path d="M8.6 17l-2 3.5M15.4 17l2 3.5"/>',
+key:'<circle cx="9" cy="9" r="3.6"/><path d="M11.6 11.6l7.9 7.9M16.5 16.5l1.6-1.6M18.5 18.5l1.5-1.5"/>',
+bag:'<rect x="5.5" y="8" width="13" height="12.5" rx="2.5"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
+star:'<path d="M12 3.5l2.55 5.17 5.7.83-4.13 4.02.98 5.68L12 16.9l-5.08 2.3.98-5.68L3.75 9.5l5.7-.83z"/>',
+nav:'<path d="M3.5 11L20.5 4l-7 16.5-2.2-7.3z"/>',
+map:'<path d="M9 4.5L3.5 6.5v13l5.5-2 6 2 5.5-2v-13l-5.5 2-6-2z"/><path d="M9 4.5v13M15 6.5v13"/>',
+ext:'<path d="M8 16.5L16.5 8M9.7 7.5h7.3v7.3"/>',
+globe:'<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 2.4 14.6 0 17M12 3.5c-2.4 2.4-2.4 14.6 0 17"/>',
+coin:'<ellipse cx="12" cy="7" rx="7.5" ry="3.3"/><path d="M4.5 7v5.2c0 1.8 3.36 3.3 7.5 3.3s7.5-1.5 7.5-3.3V7"/><path d="M4.5 12.2c0 1.8 3.36 3.3 7.5 3.3s7.5-1.5 7.5-3.3"/>',
+plug:'<path d="M9 3.5v5M15 3.5v5M6.5 8.5h11v2a5.5 5.5 0 0 1-11 0z"/><path d="M12 16v4.5"/>',
+phone:'<path d="M5.5 4.5h3l1.5 4-2 1.4a10.5 10.5 0 0 0 4.6 4.6l1.4-2 4 1.5v3a1.9 1.9 0 0 1-2.05 1.9A15.5 15.5 0 0 1 3.6 6.55 1.9 1.9 0 0 1 5.5 4.5z"/>',
+info:'<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><circle cx="12" cy="7.9" r="1" fill="currentColor" stroke="none"/>',
+utensils:'<path d="M8 3.5v6.5a1.8 1.8 0 0 1-3.6 0V3.5M6.2 9.5V20.5M16.3 3.5c-1.4 0-2.4 1.8-2.4 4.3s1 4.3 2.4 4.3M16.3 12V20.5"/>',
+alert:'<path d="M12 4l8.5 15H3.5z"/><path d="M12 10v4"/><circle cx="12" cy="16.6" r="1" fill="currentColor" stroke="none"/>',
+chevron:'<path d="M9 6l6 6-6 6"/>',
+home:'<path d="M4 11l8-6.5 8 6.5"/><path d="M6 9.5V20h12V9.5"/>',
+check:'<path d="M5 12.5l4.5 4.5L19 6.5"/>'
+};
+function ic(name,extra){return `<svg class="ic ${extra||''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[name]||''}</svg>`;}
+function typeIcon(t){return t==="flight"?"plane":t==="train"?"train":t==="checkin"?"key":t==="checkout"?"bag":t==="tour"?"star":"pin";}
+
+const COUNTRY={
+"Austria":{cur:"Euro €",lang:"German",plug:"Type C/F · 230V",emerg:"112",tip:"Round up ~5–10%"},
+"Switzerland":{cur:"Swiss franc CHF",lang:"German",plug:"Type J · 230V",emerg:"112",tip:"Service included; round up"},
+"Italy":{cur:"Euro €",lang:"Italian",plug:"Type C/F/L · 230V",emerg:"112",tip:"Coperto often added; tip optional"},
+"France":{cur:"Euro €",lang:"French",plug:"Type C/E · 230V",emerg:"112",tip:"Service compris; round up"},
+"Ireland":{cur:"Euro €",lang:"English / Irish",plug:"Type G · 230V",emerg:"112 / 999",tip:"~10% sit-down"},
+"Scotland":{cur:"Pound £",lang:"English",plug:"Type G · 230V",emerg:"999 / 112",tip:"~10% sit-down"}
+};
+
+const CITIES=[
+{id:"vienna",name:"Vienna",country:"Austria",accent:"#A23B2E",ci:"2026-06-23",co:"2026-06-25",nights:2,lat:48.2082,lng:16.3738,slat:48.1790,slng:16.3760,
+ arrive:{ic:"plane",codes:"SFO → FRA → VIE",txt:"Land Vienna ~2:15 PM, Jun 23 (Lufthansa). Airport→center: CAT train or S-Bahn S7 (~30 min)."},
+ stay:{n:"St. Christopher's Inn Vienna",addr:"Columbusgasse 16, 1100 Vienna",ci:"after 3 PM",co:"before 11 AM"},
+ ex:[],
+ see:[
+ {n:"Schönbrunn Palace",w:"Habsburg summer palace with vast baroque gardens you can roam for free.",t:"Gardens free; state rooms need a timed ticket.",b:{note:"Book a timed Grand Tour slot ahead in summer — midday sells out.",url:"https://www.schoenbrunn.at/en/",src:"schoenbrunn.at"},lat:48.1845,lng:16.3122},
+ {n:"Belvedere — Klimt's 'The Kiss'",w:"Home of Klimt's shimmering gold-leaf 'The Kiss' — the one canvas not to miss in Vienna.",b:{note:"Buy timed Upper Belvedere tickets online to skip the line.",url:"https://www.belvedere.at/en",src:"belvedere.at"},lat:48.1915,lng:16.3805},
+ {n:"St. Stephen's Cathedral",w:"Vienna's gothic heart with a candy-striped tiled roof; free to enter the nave.",lat:48.2085,lng:16.3731},
+ {n:"Naschmarkt",w:"Historic open-air market — graze cheese, olives and Middle-Eastern stalls.",t:"Quietest in the morning; many stalls shut Sundays.",lat:48.1986,lng:16.3636},
+ {n:"Vienna State Opera",w:"One of the world's great opera houses — standing-room tickets sell same-day for a few euros, or just take a tour.",lat:48.2030,lng:16.3690},
+ {n:"Walk the Ringstrasse",w:"Grand boulevard looping the old town — walk it, or ride tram 1/2 for a cheap city circuit."},
+ {n:"Danube Island",w:"21 km of riverside paths and swim spots — easy escape from the city."},
+ {n:"Vienna Woods (Wienerwald)",w:"Forested hills on the city edge with marked trails and heuriger wine taverns."}
+ ],
+ eat:[
+ {n:"Gasthaus Pöschl",nt:"Classic Austrian — try the schnitzel"},
+ {n:"Mochi",nt:"A modern Vienna favorite"},
+ {n:"Café Sperl",nt:"Authentic old-world coffeehouse"},
+ {n:"Skopik & Lohn",nt:"Popular with locals"},
+ {n:"Apfelstrudel + coffee",nt:"At any traditional Viennese café"}
+ ]},
+
+{id:"zurich",name:"Zurich",country:"Switzerland",accent:"#B5302A",ci:"2026-06-25",co:"2026-06-29",nights:4,lat:47.3725,lng:8.5417,slat:47.3810,slng:8.5330,
+ arrive:{ic:"train",codes:"Vienna → Zürich",txt:"Direct railjet, dep 10:28 AM → arrive Zürich HB 7:28 PM (long but scenic)."},
+ stay:{n:"Rental — \"Home\"",addr:"Konradstrasse 66, 8005 Zürich",ci:"after 3 PM",co:"before 11 AM"},
+ ex:[{n:"Grindelwald, Interlaken & Lauterbrunnen day trip",date:"Sat Jun 27",time:"8:00 AM",meet:"Best of Switzerland Tours AG, Limmatstrasse 2",lat:47.3790,lng:8.5400}],
+ see:[
+ {n:"Lake Zurich",w:"Swim, stroll the promenade, or take a ZSG boat cruise from Bürkliplatz.",lat:47.3667,lng:8.5413},
+ {n:"Bahnhofstrasse",w:"Switzerland's flagship shopping street, station to lake.",lat:47.3727,lng:8.5394},
+ {n:"Lindenhof",w:"Hilltop terrace over the Old Town rooftops and river — the best free viewpoint.",lat:47.3731,lng:8.5410},
+ {n:"Old Town (Altstadt)",w:"Medieval lanes, the Grossmünster towers, and Fraumünster's Chagall windows.",lat:47.3700,lng:8.5440},
+ {n:"Lindt Home of Chocolate",w:"Giant chocolate fountain and tasting in Kilchberg, ~15 min by tram or boat.",b:{note:"Reserve entry online; weekend slots fill.",url:"https://www.lindt-home-of-chocolate.com/en/",src:"lindt-home-of-chocolate.com"}},
+ {n:"Uetliberg",w:"Zurich's mountain — a 10-min train then a ridge walk with Alps views (2–4 hrs)."},
+ {n:"Swiss National Museum",w:"Castle-like museum of Swiss history, right by the station.",lat:47.3790,lng:8.5407}
+ ],
+ eat:[
+ {n:"Zeughauskeller",nt:"Historic Swiss dishes in an old armory"},
+ {n:"Sternen Grill",nt:"Famous local sausage stand"},
+ {n:"Rosso",nt:"Excellent pizza, industrial setting"},
+ {n:"Markthalle Viadukt",nt:"Food vendors under the railway arches"}
+ ]},
+
+{id:"milan",name:"Milan",country:"Italy",accent:"#2E7D55",ci:"2026-06-29",co:"2026-06-30",nights:1,lat:45.4654,lng:9.1859,slat:45.4870,slng:9.2050,
+ arrive:{ic:"train",codes:"Zürich → Milano",txt:"EC train through the Alps, dep 9:33 AM → arrive Centrale 12:50 PM."},
+ stay:{n:"Rental — \"Home\"",addr:"Via Cristoforo Gluck 13, 20125 Milan",ci:"after 3 PM",co:"before 11 AM"},
+ ex:[],
+ see:[
+ {n:"The Last Supper (Santa Maria delle Grazie)",w:"Leonardo's fragile masterpiece — only 40 people, 15 minutes, advance reservation mandatory.",b:{note:"Almost certainly SOLD OUT for late June. Your only realistic shot is a guided-tour slot (GetYourGuide / Tiqets / Viator) — check the moment you see this. Official €15; tours €45+.",url:"https://lastsupper.shop/",src:"lastsupper.shop"},lat:45.4659,lng:9.1707},
+ {n:"Duomo di Milano",w:"Vast gothic cathedral — take the lift or stairs to walk among the rooftop spires.",b:{note:"Buy the Duomo + rooftop ticket online to skip a long queue.",url:"https://www.duomomilano.it/en/",src:"duomomilano.it"},lat:45.4641,lng:9.1919},
+ {n:"Galleria Vittorio Emanuele II",w:"Glass-domed 19th-c. arcade beside the Duomo — grand just to walk through.",lat:45.4659,lng:9.1899},
+ {n:"Sforza Castle",w:"Renaissance fortress with free courtyards and museums (incl. a late Michelangelo).",lat:45.4705,lng:9.1790},
+ {n:"Navigli district",w:"Canal quarter that comes alive at aperitivo hour — a drink plus buffet around sunset.",lat:45.4520,lng:9.1740}
+ ],
+ eat:[
+ {n:"Luini",nt:"Legendary panzerotti near the Duomo — grab-and-go"},
+ {n:"Risotto alla milanese",nt:"The local saffron risotto — try it somewhere classic"},
+ {n:"Cotoletta alla milanese",nt:"Breaded veal cutlet, a Milan staple"}
+ ]},
+
+{id:"rome",name:"Rome",country:"Italy",accent:"#2E7D55",ci:"2026-06-30",co:"2026-07-04",nights:4,lat:41.8980,lng:12.4820,slat:41.8880,slng:12.4970,
+ arrive:{ic:"train",codes:"Milano → Roma",txt:"Frecciarossa high-speed, dep 1:20 PM → arrive Termini 4:30 PM (mobile QR ticket)."},
+ stay:{n:"Rental — \"Home\"",addr:"Via Ostilia 27, 00184 Rome (steps from the Colosseum)",ci:"after 2 PM",co:"before 10 AM"},
+ ex:[],
+ see:[
+ {n:"Colosseum",w:"The icon — timed entry; the Arena Floor ticket puts you where gladiators stood.",b:{note:"€18 (includes Forum + Palatine). Released 30 days out and sells out in summer — book NOW on the official site. Arena & Underground go fastest.",url:"https://ticketing.colosseo.it/en/",src:"ticketing.colosseo.it"},lat:41.8902,lng:12.4922},
+ {n:"Roman Forum & Palatine Hill",w:"The ruined civic heart of ancient Rome — included with your Colosseum ticket.",lat:41.8925,lng:12.4853},
+ {n:"Pantheon",w:"Best-preserved Roman building — a 2,000-year-old dome open to the sky.",t:"Small timed-entry fee (~€5); book ahead or buy at the door early.",lat:41.8986,lng:12.4769},
+ {n:"Trevi Fountain",w:"Baroque showstopper — go early or late to dodge the crush, then toss a coin.",lat:41.9009,lng:12.4833},
+ {n:"St. Peter's Basilica",w:"Christendom's grandest church — free entry but long security lines; the dome climb is extra.",t:"Go at opening; cover shoulders & knees (dress code enforced).",lat:41.9022,lng:12.4539},
+ {n:"Trastevere",w:"Cobbled, ivy-draped neighborhood — Rome's best evening wander and dinner.",lat:41.8890,lng:12.4690},
+ {n:"Giardino degli Aranci (Orange Garden)",w:"Quiet terrace with a postcard view over the city — lovely at golden hour.",lat:41.8845,lng:12.4805},
+ {n:"Gianicolo Hill",w:"Panoramic sunset walk above Trastevere.",lat:41.8917,lng:12.4630},
+ {n:"Testaccio",w:"Real-Rome food neighborhood — the market and old-school trattorie.",lat:41.8770,lng:12.4750},
+ {n:"Appian Way & Aqueduct Park",w:"Ancient road and towering aqueduct arches — green, photogenic, crowd-free."}
+ ],
+ eat:[
+ {n:"Da Enzo al 29",nt:"Beloved tiny Trastevere trattoria — go early"},
+ {n:"Flavio al Velavevodetto",nt:"Roman classics in Testaccio"},
+ {n:"Trapizzino",nt:"Stuffed pizza-pockets — perfect street lunch"},
+ {n:"Pasticceria Regoli",nt:"Historic pastry shop — get a maritozzo"}
+ ]},
+
+{id:"paris",name:"Paris",country:"France",accent:"#2A4A8C",ci:"2026-07-04",co:"2026-07-08",nights:4,lat:48.8606,lng:2.3376,slat:48.8580,slng:2.2800,
+ arrive:{ic:"plane",codes:"FCO → CDG",txt:"Air France AF1505, dep 3:30 PM → land 5:40 PM. CDG→center: RER B train or Roissybus."},
+ stay:{n:"Apartment",addr:"7 Rue Nicolo, 75116 Paris (16th, Passy)",ci:"after 3 PM",co:"before 11 AM"},
+ ex:[],
+ see:[
+ {n:"Eiffel Tower",w:"You know it — go up, or picnic on Champ de Mars / Trocadéro for the view.",b:{note:"Book timed tickets well ahead (the lift to the summit sells out). Stairs tickets are cheaper and easier.",url:"https://www.toureiffel.paris/en",src:"toureiffel.paris"},lat:48.8584,lng:2.2945},
+ {n:"Louvre Museum",w:"The world's biggest museum — pick 2–3 wings, don't try to 'do it all'. Closed Tuesdays.",b:{note:"Timed-entry reservation is mandatory — book online; same-day is often gone.",url:"https://www.louvre.fr/en",src:"louvre.fr"},lat:48.8606,lng:2.3376},
+ {n:"Notre-Dame de Paris",w:"Reopened and luminous after the fire — free to enter the restored nave.",b:{note:"Entry is FREE. An optional free timed slot opens only 2–3 days ahead via the official app/site; otherwise expect a 1–2 hr queue. Ignore any site selling 'tickets'.",url:"https://www.notredamedeparis.fr/en/",src:"notredamedeparis.fr"},lat:48.8530,lng:2.3499},
+ {n:"Montmartre & Sacré-Cœur",w:"Hilltop village of artists and stairs, topped by the white basilica — great at sunset.",lat:48.8867,lng:2.3431},
+ {n:"Seine River walk",w:"Stroll the quais between Pont Neuf and the Latin Quarter — bridges and bouquinistes."},
+ {n:"Canal Saint-Martin",w:"Leafy, hip canal for a picnic and people-watching.",lat:48.8710,lng:2.3660},
+ {n:"Marché des Enfants Rouges",w:"Paris's oldest covered market — global food stalls for lunch.",lat:48.8627,lng:2.3622},
+ {n:"Parc des Buttes-Chaumont",w:"Dramatic hilly park with a clifftop temple — a local favorite.",lat:48.8809,lng:2.3820},
+ {n:"Rue Crémieux",w:"Pastel-house photo street — it's residential, so be quiet and respectful.",lat:48.8480,lng:2.3730},
+ {n:"Butte-aux-Cailles",w:"Village-y, street-art lane of bistros south of center.",lat:48.8270,lng:2.3520}
+ ],
+ eat:[
+ {n:"Bouillon Pigalle",nt:"Classic French at low prices — expect a queue, no reservations"},
+ {n:"Le Baratin",nt:"Tiny, beloved natural-wine bistro"},
+ {n:"Breizh Café",nt:"The city's best crêpes & galettes"},
+ {n:"Du Pain et des Idées",nt:"Cult bakery — get the escargot pistachio"},
+ {n:"Rotisserie Segar",nt:"That chicken caesar sandwich!"},
+ {n:"Steak frites · onion soup · croissants",nt:"The Paris classics to hunt down"}
+ ]},
+
+{id:"dublin1",name:"Dublin",country:"Ireland",accent:"#1C6B45",ci:"2026-07-08",co:"2026-07-10",nights:2,lat:53.3440,lng:-6.2670,slat:53.3470,slng:-6.2780,
+ arrive:{ic:"plane",codes:"CDG → DUB",txt:"Dep 11:15 AM → land 12:10 PM. Airport→center: Airlink 700 / bus 16."},
+ stay:{n:"Rental — \"Home\"",addr:"Queen Street, Dublin D07 KD81",ci:"after 3 PM",co:"before 10 AM"},
+ ex:[{n:"Dark Dublin Walking Tour: Torture, Murder & Mystery",date:"Wed Jul 8",time:"5:30 PM",meet:"Barnardo Square",lat:53.3440,lng:-6.2670}],
+ see:[
+ {n:"Trinity College & Book of Kells",w:"Ancient illuminated gospels plus the breathtaking Long Room library.",b:{note:"Book a timed Book of Kells slot online — it's busy.",url:"https://www.tcd.ie/visitors/book-of-kells/",src:"tcd.ie"},lat:53.3438,lng:-6.2546},
+ {n:"Kilmainham Gaol",w:"Powerful, guided-tour-only prison museum at the center of Irish independence.",b:{note:"Guided tours sell out days ahead — book on the official Heritage Ireland site now.",url:"https://kilmainhamgaolmuseum.ie/",src:"kilmainhamgaolmuseum.ie"},lat:53.3417,lng:-6.3097},
+ {n:"Dublin Castle",w:"State rooms and a medieval undercroft in the city core.",lat:53.3429,lng:-6.2674},
+ {n:"Howth",w:"Fishing village and cliff loop (4–6 mi) with lighthouse views and harbour seals; ~25 min by DART."},
+ {n:"Phoenix Park",w:"Huge city park with wild fallow deer (and the zoo).",lat:53.3559,lng:-6.3298},
+ {n:"George's Street Arcade",w:"Victorian covered market for browsing and a bite.",lat:53.3430,lng:-6.2630}
+ ],
+ eat:[
+ {n:"The Winding Stair",nt:"Modern Irish overlooking the Liffey"},
+ {n:"Brother Hubbard",nt:"Great brunch & coffee"},
+ {n:"Etto",nt:"Small-plates favorite"},
+ {n:"The Cobblestone",nt:"Proper trad-music pub in Smithfield"}
+ ]},
+
+{id:"galway",name:"Galway",country:"Ireland",accent:"#1C6B45",ci:"2026-07-10",co:"2026-07-13",nights:3,lat:53.2720,lng:-9.0530,slat:53.2740,slng:-9.0490,
+ arrive:{ic:"train",codes:"Dublin → Galway",txt:"From Heuston, dep 9:25 AM → arrive Galway 11:50 AM."},
+ stay:{n:"Condominium",addr:"Eyre Square 17, Galway City H91 YX84",ci:"after 4 PM",co:"before 10 AM"},
+ ex:[{n:"Cliffs of Moher, Aillwee Cave & Dunguaire Castle Tour",date:"Sat Jul 11",time:"9:30 AM",meet:"HYDE Hotel, Forster St",lat:53.2755,lng:-9.0470}],
+ see:[
+ {n:"Latin Quarter",w:"Galway's lively pedestrian heart — pubs, buskers and color.",lat:53.2710,lng:-9.0540},
+ {n:"Spanish Arch & Galway Bay",w:"Riverside arch by the water; sunsets over the bay.",lat:53.2695,lng:-9.0540},
+ {n:"Salthill Promenade",w:"Seaside walk — 'kick the wall' at the end like a local.",lat:53.2590,lng:-9.0700},
+ {n:"Cliffs of Moher",w:"Ireland's epic Atlantic cliffs — covered by your Jul 11 tour."}
+ ],
+ eat:[
+ {n:"Kai",nt:"Beloved farm-to-table — book ahead"},
+ {n:"Ard Bia at Nimmos",nt:"Cozy spot by the Spanish Arch"},
+ {n:"McDonagh's",nt:"The classic fish & chips"}
+ ]},
+
+{id:"dublin2",name:"Dublin",country:"Ireland",accent:"#1C6B45",ci:"2026-07-13",co:"2026-07-15",nights:2,lat:53.3565,lng:-6.2860,slat:53.3590,slng:-6.2880,
+ arrive:{ic:"train",codes:"Galway → Dublin",txt:"Back to Heuston, dep 11:05 AM → arrive 1:40 PM."},
+ stay:{n:"Castle Room at The Royal Lodge",addr:"483 N Circular Rd, Dublin D07 YK71",ci:"after 3 PM",co:"before 11 AM",conf:"Vrbo HA-GH20ML"},
+ ex:[],
+ see:[
+ {n:"Round two in Dublin",w:"Two more nights — circle back to anything you missed on your first stay (full list in the earlier Dublin guide)."},
+ {n:"Guinness Storehouse",w:"The famous brewery experience ending with a rooftop Gravity Bar pint and 360° city views.",b:{note:"Timed entry — book online ahead.",url:"https://www.guinness-storehouse.com/en",src:"guinness-storehouse.com"},lat:53.3419,lng:-6.2867},
+ {n:"Day trip: Glendalough & Wicklow",w:"Monastic ruins and mountain lakes an hour south — easy guided day tours from the city."}
+ ],
+ eat:[
+ {n:"The Woollen Mills",nt:"Riverside Irish brunch"},
+ {n:"Gallagher's Boxty House",nt:"Traditional boxty in Temple Bar"}
+ ]},
+
+{id:"edinburgh",name:"Edinburgh",country:"Scotland",accent:"#34557A",ci:"2026-07-15",co:"2026-07-17",nights:2,lat:55.9510,lng:-3.1890,slat:55.9535,slng:-3.1920,
+ arrive:{ic:"plane",codes:"DUB → EDI",txt:"Aer Lingus EI3252 (ref 222FFS), dep 10:20 AM → land 11:40 AM. Airport→center: tram or Airlink 100."},
+ stay:{n:"Destiny Scotland — St. Andrew Square Apartments",addr:"9 South St Andrew Street, EH2 2AU",ci:"after 3 PM",co:"before 11 AM",conf:"Vrbo 95439c25…"},
+ ex:[],
+ see:[
+ {n:"Edinburgh Castle",w:"Fortress on a volcanic crag over the whole city.",b:{note:"Pre-book a timed slot online — gate slots sell out in summer.",url:"https://www.edinburghcastle.scot/",src:"edinburghcastle.scot"},lat:55.9486,lng:-3.1999},
+ {n:"The Royal Mile",w:"The spine of the Old Town, castle to palace — duck into the hidden closes.",lat:55.9500,lng:-3.1860},
+ {n:"Victoria Street",w:"Curved row of candy-colored shopfronts said to inspire Diagon Alley.",lat:55.9479,lng:-3.1937},
+ {n:"Arthur's Seat",w:"Extinct volcano hike (1–2 hrs) for the best view in the city.",lat:55.9441,lng:-3.1618},
+ {n:"Calton Hill",w:"Easy climb to monuments and the classic skyline panorama — great at sunrise.",lat:55.9550,lng:-3.1820},
+ {n:"Dean Village",w:"Storybook former mills on the Water of Leith, minutes from the center.",lat:55.9527,lng:-3.2169},
+ {n:"Stockbridge",w:"Villagey neighborhood with indie shops and a Sunday market.",lat:55.9580,lng:-3.2090}
+ ],
+ eat:[
+ {n:"The Scran & Scallie",nt:"Gastropub from a Michelin chef"},
+ {n:"The Pantry",nt:"Lovely Stockbridge brunch"},
+ {n:"Makiin",nt:"Standout Thai"}
+ ]},
+
+{id:"glasgow",name:"Glasgow",country:"Scotland",accent:"#34557A",ci:"2026-07-17",co:"2026-07-20",nights:3,lat:55.8700,lng:-4.2890,slat:55.8580,slng:-4.2560,
+ arrive:{ic:"train",codes:"Edinburgh → Glasgow",txt:"Waverley → Queen St, dep 11:45 AM → arrive 12:35 PM (collect ref TW4NBBLH)."},
+ stay:{n:"Hotel",addr:"5 Dixon Street, Glasgow G1 4AL",ci:"after 3 PM",co:"before 11 AM",conf:"Vrbo B472AGG0516"},
+ ex:[],
+ see:[
+ {n:"Kelvingrove Museum",w:"Free, gloriously eclectic art-and-everything museum in a cathedral-like hall (daily organ recitals).",lat:55.8686,lng:-4.2906},
+ {n:"University of Glasgow",w:"Hogwarts-ish gothic cloisters and a hilltop tower.",lat:55.8717,lng:-4.2887},
+ {n:"West End & Ashton Lane",w:"Cobbled lane of bars and the city's best café-bar buzz.",lat:55.8745,lng:-4.2935},
+ {n:"Kelvingrove Park",w:"Victorian park along the river by the museum.",lat:55.8700,lng:-4.2870},
+ {n:"Loch Lomond",w:"Scotland's largest loch, ~45 min out — boat trips and lochside walks."},
+ {n:"Conic Hill (Balmaha)",w:"Short, steep climb (2–3 hrs) for a stunning loch panorama."}
+ ],
+ eat:[
+ {n:"Ox and Finch",nt:"Buzzy small plates — a Glasgow standout"},
+ {n:"Ka Pao",nt:"Bright Southeast-Asian sharing plates"},
+ {n:"Paesano Pizza",nt:"Cult Neapolitan pizza"}
+ ]}
+];
+
+const EVENTS=[
+{date:"2026-06-22",sort:"14:40",time:"2:40 PM",title:"Fly SFO → Frankfurt",sub:"Lufthansa LH455",type:"flight"},
+{date:"2026-06-23",sort:"12:50",time:"12:50 PM",title:"Fly Frankfurt → Vienna",sub:"Lufthansa LH63344 · lands 2:15 PM",type:"flight"},
+{date:"2026-06-23",sort:"15:00",time:"After 3 PM",title:"Check in — Vienna",sub:"St. Christopher's Inn, Columbusgasse 16",type:"checkin"},
+{date:"2026-06-25",sort:"07:30",time:"Before 11 AM",title:"Check out — Vienna",sub:"",type:"checkout"},
+{date:"2026-06-25",sort:"10:28",time:"10:28 AM",title:"Train Vienna → Zurich",sub:"Vienna HBF → Zürich HB · arrives 7:28 PM",type:"train"},
+{date:"2026-06-25",sort:"15:00",time:"After 3 PM",title:"Check in — Zurich",sub:"Konradstrasse 66",type:"checkin"},
+{date:"2026-06-27",sort:"08:00",time:"8:00 AM",title:"Tour — Grindelwald, Interlaken & Lauterbrunnen",sub:"Meet: Best of Switzerland Tours, Limmatstrasse 2",type:"tour"},
+{date:"2026-06-29",sort:"07:30",time:"Before 11 AM",title:"Check out — Zurich",sub:"",type:"checkout"},
+{date:"2026-06-29",sort:"09:33",time:"9:33 AM",title:"Train Zurich → Milan",sub:"Zürich HB → Milano Centrale · arrives 12:50 PM",type:"train"},
+{date:"2026-06-29",sort:"15:00",time:"After 3 PM",title:"Check in — Milan",sub:"Via Cristoforo Gluck 13",type:"checkin"},
+{date:"2026-06-30",sort:"07:30",time:"Before 11 AM",title:"Check out — Milan",sub:"",type:"checkout"},
+{date:"2026-06-30",sort:"13:20",time:"1:20 PM",title:"Train Milan → Rome",sub:"Milano Centrale → Roma Termini · arrives 4:30 PM",type:"train"},
+{date:"2026-06-30",sort:"16:30",time:"After 2 PM",title:"Check in — Rome",sub:"Via Ostilia 27 (by the Colosseum)",type:"checkin"},
+{date:"2026-07-04",sort:"07:30",time:"Before 10 AM",title:"Check out — Rome",sub:"",type:"checkout"},
+{date:"2026-07-04",sort:"15:30",time:"3:30 PM",title:"Fly Rome → Paris",sub:"Air France AF1505 · FCO → CDG · lands 5:40 PM",type:"flight"},
+{date:"2026-07-04",sort:"18:00",time:"After 3 PM",title:"Check in — Paris",sub:"7 Rue Nicolo (16th)",type:"checkin"},
+{date:"2026-07-08",sort:"07:30",time:"Before 11 AM",title:"Check out — Paris",sub:"",type:"checkout"},
+{date:"2026-07-08",sort:"11:15",time:"11:15 AM",title:"Fly Paris → Dublin",sub:"CDG → DUB · lands 12:10 PM",type:"flight"},
+{date:"2026-07-08",sort:"15:00",time:"After 3 PM",title:"Check in — Dublin",sub:"Queen Street",type:"checkin"},
+{date:"2026-07-08",sort:"17:30",time:"5:30 PM",title:"Tour — Dark Dublin Walking Tour",sub:"Meet: Barnardo Square",type:"tour"},
+{date:"2026-07-10",sort:"07:30",time:"Before 10 AM",title:"Check out — Dublin",sub:"",type:"checkout"},
+{date:"2026-07-10",sort:"09:25",time:"9:25 AM",title:"Train Dublin → Galway",sub:"Heuston → Galway · arrives 11:50 AM",type:"train"},
+{date:"2026-07-10",sort:"16:00",time:"After 4 PM",title:"Check in — Galway",sub:"Eyre Square 17",type:"checkin"},
+{date:"2026-07-11",sort:"09:30",time:"9:30 AM",title:"Tour — Cliffs of Moher, Aillwee Cave & Dunguaire",sub:"Meet: HYDE Hotel, Forster St",type:"tour"},
+{date:"2026-07-13",sort:"07:30",time:"Before 10 AM",title:"Check out — Galway",sub:"",type:"checkout"},
+{date:"2026-07-13",sort:"11:05",time:"11:05 AM",title:"Train Galway → Dublin",sub:"Galway → Heuston · arrives 1:40 PM",type:"train"},
+{date:"2026-07-13",sort:"15:00",time:"After 3 PM",title:"Check in — Dublin (Royal Lodge)",sub:"483 N Circular Rd · Vrbo HA-GH20ML",type:"checkin"},
+{date:"2026-07-15",sort:"07:30",time:"Before 11 AM",title:"Check out — Dublin",sub:"",type:"checkout"},
+{date:"2026-07-15",sort:"10:20",time:"10:20 AM",title:"Fly Dublin → Edinburgh",sub:"Aer Lingus EI3252 · ref 222FFS · lands 11:40 AM",type:"flight"},
+{date:"2026-07-15",sort:"15:00",time:"After 3 PM",title:"Check in — Edinburgh",sub:"9 South St Andrew St · Vrbo 95439c25…",type:"checkin"},
+{date:"2026-07-17",sort:"07:30",time:"Before 11 AM",title:"Check out — Edinburgh",sub:"",type:"checkout"},
+{date:"2026-07-17",sort:"11:45",time:"11:45 AM",title:"Train Edinburgh → Glasgow",sub:"Waverley → Queen St · arrives 12:35 PM · collect ref TW4NBBLH",type:"train"},
+{date:"2026-07-17",sort:"15:00",time:"After 3 PM",title:"Check in — Glasgow",sub:"5 Dixon Street · Vrbo B472AGG0516",type:"checkin"},
+{date:"2026-07-20",sort:"07:30",time:"Before 11 AM",title:"Check out — Glasgow",sub:"",type:"checkout"},
+{date:"2026-07-20",sort:"14:00",time:"2:00 PM",title:"Fly Glasgow → Newark",sub:"United UA231 · lands 4:35 PM",type:"flight"},
+{date:"2026-07-20",sort:"19:20",time:"7:20 PM",title:"Fly Newark → San Francisco",sub:"United UA1558 · lands 10:59 PM",type:"flight"}
+];
+
+const BK_FLIGHTS=[
+{r:"SFO → FRA",n:"Lufthansa LH455",d:"Jun 22 · 2:40 PM"},
+{r:"FRA → VIE",n:"Lufthansa LH63344",d:"Jun 23 · 12:50 PM"},
+{r:"FCO → CDG",n:"Air France AF1505",d:"Jul 4 · 3:30 PM"},
+{r:"CDG → DUB",n:"Flight",d:"Jul 8 · 11:15 AM"},
+{r:"DUB → EDI",n:"Aer Lingus EI3252 · ref 222FFS",d:"Jul 15 · 10:20 AM"},
+{r:"GLA → EWR",n:"United UA231",d:"Jul 20 · 2:00 PM"},
+{r:"EWR → SFO",n:"United UA1558",d:"Jul 20 · 7:20 PM"}
+];
+const BK_TRAINS=[
+{r:"Vienna HBF → Zürich HB",d:"Jun 25 · 10:28 AM"},
+{r:"Zürich HB → Milano Centrale",d:"Jun 29 · 9:33 AM"},
+{r:"Milano Centrale → Roma Termini",d:"Jun 30 · 1:20 PM · mobile QR"},
+{r:"Dublin Heuston → Galway",d:"Jul 10 · 9:25 AM"},
+{r:"Galway → Dublin Heuston",d:"Jul 13 · 11:05 AM"},
+{r:"Edinburgh Waverley → Glasgow Queen St",d:"Jul 17 · 11:45 AM · collect ref TW4NBBLH"}
+];
+const BK_TOURS=[
+{n:"Grindelwald, Interlaken & Lauterbrunnen day trip",d:"Jun 27 · 8:00 AM",m:"Best of Switzerland Tours, Limmatstrasse 2, Zürich"},
+{n:"Dark Dublin Walking Tour",d:"Jul 8 · 5:30 PM",m:"Barnardo Square, Dublin"},
+{n:"Cliffs of Moher, Aillwee Cave & Dunguaire",d:"Jul 11 · 9:30 AM",m:"HYDE Hotel, Forster St, Galway"}
+];
+
+// ===== HELPERS =====
+const $=s=>document.querySelector(s);
+const enc=encodeURIComponent;
+function dDir(lat,lng){return "https://maps.apple.com/?daddr="+lat+","+lng+"&dirflg=w";}
+function qDir(q){return "https://maps.apple.com/?daddr="+enc(q)+"&dirflg=w";}
+function fmtDate(iso){return new Date(iso+"T00:00:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});}
+function shortRange(c){const a=new Date(c.ci+"T00:00:00"),b=new Date(c.co+"T00:00:00"),mo=d=>d.toLocaleDateString("en-US",{month:"short"});return a.getMonth()===b.getMonth()?`${mo(a)} ${a.getDate()}–${b.getDate()}`:`${mo(a)} ${a.getDate()} – ${mo(b)} ${b.getDate()}`;}
+function clampToday(){const t=todayISO();return t<START?START:(t>END?END:t);}
+
+// ===== TRIP STATE =====
+function todayISO(){const n=new Date();return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0");}
+function tripDays(){const out=[];let d=new Date(START+"T00:00:00");const end=new Date(END+"T00:00:00");while(d<=end){out.push(d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"));d.setDate(d.getDate()+1);}return out;}
+const DAYS=tripDays();
+let _vd=clampToday();
+function currentCity(iso){return CITIES.find(c=>iso>=c.ci&&iso<c.co);}
+function status(){const t=todayISO();
+ if(t<START)return {pre:true,days:Math.ceil((new Date(START+"T00:00:00")-new Date(t+"T00:00:00"))/864e5)};
+ if(t>END)return {post:true};
+ return {dn:DAYS.indexOf(t)+1,city:currentCity(t),events:EVENTS.filter(e=>e.date===t),date:t};}
+function statusHTML(){const s=status();let label,big,sub,dot="";
+ if(s.pre){label="Countdown";big=s.days+" day"+(s.days>1?"s":"")+" to go";sub="Departs Mon, Jun 22 · SFO → Frankfurt";}
+ else if(s.post){label="Trip complete";big="Welcome home";sub="28 days · 6 countries · 10 stops";}
+ else{label="Day "+s.dn+" of "+DAYS.length;big=s.city?s.city.name:"In transit";sub=s.events.length?("Next — "+s.events[0].title):("A free day"+(s.city?" in "+s.city.name:""));if(s.city)dot=`<span class="cdot" style="background:${s.city.accent}"></span>`;}
+ return `<div class="status"><div class="status-l">${label}</div><div class="status-big">${dot}${big}</div><div class="status-sub">${sub}</div></div>`;}
+
+// ===== SHARED PIECES =====
+function sec(t){return `<div class="sec">${t}</div>`;}
+function sunburstSVG(){let r="";const cx=120,cy=66,n=26;for(let i=0;i<n;i++){const a=Math.PI*2*i/n,x=cx+Math.cos(a)*180,y=cy+Math.sin(a)*180;r+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="#C8A042" stroke-width="'+(i%2?0.5:1.3)+'"/>';}return '<svg class="sun" viewBox="0 0 240 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+r+'<circle cx="'+cx+'" cy="'+cy+'" r="8" fill="#15120C" stroke="#C8A042" stroke-width="1.1"/></svg>';}
+function confettiSVG(){return '<svg class="conf" viewBox="0 0 300 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="24" cy="150" r="5" fill="none" stroke="#D85A3C" stroke-width="1.6"/><path d="M268 38 l9 0 l0 9" fill="none" stroke="#2E8BA8" stroke-width="1.6"/><path d="M246 152 q6 -8 12 0 t12 0" fill="none" stroke="#C8A042" stroke-width="1.4"/><path d="M30 52 l6 -11 l6 11 z" fill="none" stroke="#2E8BA8" stroke-width="1.5"/><g stroke="#D85A3C" stroke-width="1.6"><line x1="283" y1="118" x2="283" y2="130"/><line x1="277" y1="124" x2="289" y2="124"/></g></svg>';}
+function tlItem(e,now){return `<div class="tl ${now?"now":""}"><div class="tl-ic">${ic(typeIcon(e.type))}</div><div class="tl-body"><div class="tl-t">${e.time||""}</div><div class="tl-ti">${e.title}</div>${e.sub?`<div class="tl-ts">${e.sub}</div>`:""}</div></div>`;}
+function stayCard(c){return `<div class="card"><div class="row-t" style="font-size:15px">${c.stay.n}</div><div class="wy" style="margin-top:5px">${c.stay.addr}</div><div class="wy mut" style="margin-top:3px">Check-in ${c.stay.ci} · Check-out ${c.stay.co}${c.stay.conf?" · "+c.stay.conf:""}</div><div class="btns"><a class="btn solid" href="${c.slat?dDir(c.slat,c.slng):qDir(c.stay.addr)}" target="_blank" rel="noopener">${ic('nav')} Directions</a></div></div>`;}
+function seeHTML(s,c){return `<div class="see"><div class="see-h">${s._n?`<span class="pn">${s._n}</span>`:""}<span class="see-nm">${s.n}</span></div><div class="wy">${s.w}</div>${s.t?`<div class="wy mut">Tip: ${s.t}</div>`:""}${s.b?`<div class="book">${ic('info')}<div>${s.b.note}${s.b.url?` <a href="${s.b.url}" target="_blank" rel="noopener">${s.b.src} ${ic('ext')}</a>`:""}</div></div>`:""}<div class="btns"><a class="btn solid" href="${s.lat?dDir(s.lat,s.lng):qDir(s.n+", "+c.name)}" target="_blank" rel="noopener">${ic('nav')} Directions</a></div></div>`;}
+
+// ===== SELF-CONTAINED MAPS (real geography embedded; no network, no library) =====
+const LAND={"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[22.73,54.33],[20.89,54.31],[19.66,54.43],[19.89,54.87],[21.27,55.19],[22.31,55.02],[22.76,54.86],[22.65,54.58],[22.73,54.33]]],[[[130.78,42.22],[130.64,42.4],[130.63,42.9],[131.14,42.93],[131.29,44.11],[131.03,44.97],[131.88,45.32],[133.1,45.14],[133.77,46.12],[134.11,47.21],[134.5,47.58],[135.02,48.48],[133.37,48.18],[132.51,47.79],[130.99,47.79],[130.58,48.73],[129.4,49.44],[127.66,49.76],[127.29,50.74],[126.94,51.35],[126.56,51.78],[125.95,52.79],[125.07,53.16],[123.57,53.46],[122.24,53.43],[121,53.25],[120.18,52.75],[120.73,52.52],[120.74,51.96],[120.18,51.64],[119.28,50.58],[119.29,50.14],[117.88,49.51],[116.68,49.89],[115.49,49.81],[114.96,50.14],[114.36,50.25],[112.9,49.54],[111.58,49.38],[110.66,49.13],[109.4,49.29],[108.47,49.28],[107.87,49.79],[106.89,50.27],[105.89,50.41],[104.62,50.27],[103.68,50.09],[102.26,50.51],[102.07,51.26],[100.89,51.52],[99.98,51.63],[98.86,52.05],[97.83,51.01],[98.23,50.42],[97.26,49.73],[95.81,49.98],[94.82,50.01],[94.15,50.48],[93.11,50.49],[92.23,50.8],[90.71,50.33],[88.8,49.47],[87.75,49.3],[87.36,49.22],[86.83,49.83],[85.54,49.69],[85.11,50.12],[84.42,50.31],[83.94,50.89],[83.38,51.07],[81.95,50.81],[80.57,51.39],[80.03,50.87],[77.8,53.4],[76.52,54.18],[76.89,54.49],[74.39,53.55],[73.42,53.49],[73.51,54.04],[72.23,54.38],[71.18,54.13],[70.86,55.17],[69.07,55.38],[68.17,54.97],[65.67,54.6],[65.18,54.35],[61.44,54.01],[60.98,53.66],[61.7,52.98],[60.74,52.72],[60.93,52.45],[59.97,51.96],[61.59,51.27],[61.34,50.8],[59.93,50.84],[59.64,50.55],[58.36,51.06],[56.78,51.04],[55.72,50.62],[54.53,51.03],[52.33,51.72],[50.77,51.69],[48.7,50.6],[48.58,49.88],[47.55,50.45],[46.75,49.36],[47.04,49.15],[46.47,48.39],[47.31,47.72],[48.06,47.74],[48.7,47.08],[48.59,46.56],[49.1,46.4],[48.65,45.81],[47.68,45.64],[46.68,44.61],[47.59,43.66],[47.49,42.99],[48.58,41.81],[47.99,41.41],[47.81,41.15],[47.37,41.22],[46.69,41.83],[46.41,41.86],[45.78,42.09],[45.47,42.5],[44.54,42.71],[43.93,42.55],[43.76,42.74],[42.4,43.22],[40.92,43.38],[40.08,43.55],[39.95,43.44],[38.68,44.28],[37.54,44.66],[36.68,45.24],[37.4,45.41],[38.23,46.24],[37.67,46.64],[39.15,47.05],[39.12,47.26],[38.22,47.1],[38.26,47.55],[38.77,47.83],[39.74,47.9],[39.9,48.23],[39.67,48.78],[40.08,49.31],[40.07,49.6],[38.59,49.93],[38.01,49.92],[37.39,50.38],[36.62,50.23],[35.36,50.58],[35.38,50.77],[35.02,51.21],[34.22,51.26],[34.14,51.57],[34.39,51.77],[33.75,52.33],[32.72,52.24],[32.41,52.29],[32.16,52.06],[31.79,52.1],[31.54,52.74],[31.3,53.07],[31.5,53.17],[32.3,53.13],[32.69,53.35],[32.41,53.62],[31.73,53.79],[31.79,53.97],[31.38,54.16],[30.76,54.81],[30.97,55.08],[30.88,55.55],[29.9,55.79],[29.37,55.67],[29.23,55.92],[28.18,56.17],[27.86,56.76],[27.77,57.24],[27.29,57.47],[27.72,57.79],[27.42,58.72],[28.13,59.3],[27.98,59.48],[29.12,60.03],[28.07,60.5],[30.21,61.78],[31.14,62.36],[31.52,62.87],[30.04,63.55],[30.44,64.2],[29.54,64.95],[30.22,65.81],[29.05,66.94],[29.98,67.7],[28.45,68.36],[28.59,69.07],[29.4,69.16],[31.1,69.56],[32.13,69.91],[33.77,69.3],[36.51,69.06],[40.29,67.93],[41.06,67.46],[41.13,66.79],[40.02,66.27],[38.38,66],[33.92,66.76],[33.18,66.63],[34.81,65.9],[34.88,65.44],[34.94,64.41],[36.23,64.11],[37.01,63.85],[37.14,64.33],[36.54,64.76],[37.18,65.14],[39.59,64.52],[40.43,64.76],[39.76,65.5],[42.09,66.48],[43.02,66.42],[43.95,66.07],[44.53,66.76],[43.7,67.35],[44.19,67.95],[43.45,68.57],[46.25,68.25],[46.82,67.69],[45.56,67.57],[45.56,67.01],[46.35,66.67],[47.89,66.88],[48.14,67.52],[50.23,68],[53.72,68.86],[54.47,68.81],[53.49,68.2],[54.73,68.1],[55.44,68.44],[57.32,68.47],[58.8,68.88],[59.94,68.28],[61.08,68.94],[60.03,69.52],[60.55,69.85],[63.5,69.55],[64.89,69.23],[68.51,68.09],[69.18,68.62],[68.16,69.14],[68.14,69.36],[66.93,69.45],[67.26,69.93],[66.72,70.71],[66.7,71.03],[68.54,71.93],[69.2,72.84],[69.94,73.04],[72.59,72.78],[72.79,72.22],[71.85,71.41],[72.47,71.09],[72.79,70.39],[72.56,69.02],[73.67,68.41],[73.24,67.74],[71.28,66.32],[72.42,66.17],[72.82,66.53],[73.92,66.79],[74.19,67.28],[75.05,67.76],[74.47,68.33],[74.94,68.99],[73.84,69.07],[73.6,69.63],[74.4,70.63],[73.1,71.45],[74.89,72.12],[74.66,72.83],[75.16,72.86],[75.68,72.3],[75.29,71.34],[76.36,71.15],[75.9,71.87],[77.58,72.27],[79.65,72.32],[81.5,71.75],[80.61,72.58],[80.51,73.65],[82.25,73.85],[84.66,73.81],[86.82,73.94],[86.01,74.46],[87.17,75.12],[88.31,75.14],[90.26,75.64],[92.9,75.77],[93.24,76.05],[95.86,76.14],[96.68,75.92],[98.92,76.45],[100.76,76.43],[101.04,76.86],[101.99,77.29],[104.35,77.7],[106.07,77.37],[104.71,77.13],[106.97,76.97],[107.24,76.48],[108.15,76.72],[111.08,76.71],[113.33,76.22],[114.13,75.85],[113.89,75.33],[112.78,75.03],[110.15,74.48],[109.4,74.18],[110.64,74.04],[112.12,73.79],[113.02,73.98],[113.53,73.34],[113.97,73.59],[115.57,73.75],[118.78,73.59],[119.02,73.12],[123.2,72.97],[123.26,73.74],[125.38,73.56],[126.98,73.57],[128.59,73.04],[129.05,72.4],[128.46,71.98],[129.71,71.19],[131.29,70.79],[132.25,71.84],[133.86,71.39],[135.56,71.66],[137.5,71.35],[138.23,71.63],[139.87,71.49],[139.15,72.42],[140.47,72.85],[149.5,72.2],[150.35,71.61],[152.97,70.84],[157.01,71.03],[159,70.87],[159.83,70.45],[159.71,69.72],[160.94,69.44],[162.28,69.64],[164.05,69.67],[165.94,69.47],[167.84,69.58],[169.58,68.69],[170.82,69.01],[170.01,69.65],[170.45,70.1],[173.64,69.82],[175.72,69.88],[178.6,69.4],[-180,68.96],[-177.55,68.2],[-174.93,67.21],[-175.01,66.58],[-174.34,66.34],[-174.57,67.06],[-171.86,66.91],[-169.9,65.98],[-170.89,65.54],[-172.53,65.44],[-172.56,64.46],[-172.95,64.25],[-173.89,64.28],[-174.65,64.63],[-175.98,64.92],[-176.21,65.36],[-177.22,65.52],[-178.36,65.39],[-178.9,65.74],[-178.69,66.11],[-179.88,65.87],[-179.43,65.4],[-180,64.98],[179.99,64.97],[178.71,64.53],[177.41,64.61],[178.31,64.08],[178.91,63.25],[179.37,62.98],[179.49,62.57],[179.23,62.3],[177.36,62.52],[174.57,61.77],[173.68,61.65],[172.15,60.95],[170.7,60.34],[170.33,59.88],[168.9,60.57],[166.29,59.79],[165.84,60.16],[164.88,59.73],[163.54,59.87],[163.22,59.21],[162.02,58.24],[162.05,57.84],[163.19,57.62],[163.06,56.16],[162.13,56.12],[161.7,55.29],[162.12,54.85],[160.37,54.34],[160.02,53.2],[158.53,52.96],[158.23,51.94],[156.79,51.01],[156.42,51.7],[155.99,53.16],[155.43,55.38],[155.92,56.77],[156.76,57.36],[156.81,57.83],[158.36,58.06],[160.15,59.31],[161.87,60.34],[163.67,61.14],[164.47,62.55],[163.26,62.47],[162.66,61.64],[160.12,60.54],[159.3,61.77],[156.72,61.43],[154.22,59.76],[155.04,59.15],[152.81,58.88],[151.26,58.78],[151.34,59.5],[149.78,59.66],[148.55,59.16],[145.49,59.34],[142.2,59.04],[138.96,57.09],[135.13,54.73],[136.7,54.6],[137.19,53.98],[138.16,53.75],[138.8,54.25],[139.9,54.19],[141.35,53.09],[141.38,52.24],[140.6,51.24],[140.51,50.05],[140.06,48.45],[138.56,47],[138.22,46.31],[136.86,45.14],[135.51,43.99],[134.87,43.4],[133.54,42.81],[132.91,42.8],[132.28,43.28],[130.94,42.55],[130.78,42.22]]],[[[33.44,45.97],[33.7,46.22],[34.41,46],[34.73,45.97],[34.86,45.77],[35.01,45.74],[35.02,45.65],[35.51,45.41],[36.53,45.47],[36.33,45.11],[35.24,44.94],[33.88,44.36],[33.33,44.57],[33.55,45.03],[32.45,45.33],[32.63,45.52],[33.59,45.85],[33.44,45.97]]]]}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[31.1,69.56],[29.4,69.16],[28.59,69.07],[29.01,69.77],[27.73,70.16],[26.18,69.83],[25.69,69.09],[24.73,68.65],[23.66,68.89],[22.36,68.84],[21.25,69.37],[20.64,69.11],[20.03,69.07],[19.88,68.41],[17.99,68.57],[17.73,68.01],[16.77,68.01],[16.11,67.3],[15.11,66.19],[13.56,64.79],[13.92,64.44],[13.57,64.05],[12.58,64.07],[11.93,63.13],[11.99,61.8],[12.63,61.29],[12.3,60.12],[11.47,59.43],[11.03,58.86],[10.36,59.47],[8.38,58.31],[7.05,58.08],[5.66,58.59],[5.31,59.66],[4.99,61.97],[5.91,62.62],[8.55,63.45],[10.53,64.49],[12.36,65.88],[14.76,67.81],[16.44,68.56],[19.18,69.82],[21.38,70.26],[23.02,70.2],[24.55,71.03],[26.37,70.99],[28.16,71.19],[31.29,70.45],[30,70.19],[31.1,69.56]]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-46.76,82.63],[-43.41,83.23],[-39.9,83.18],[-38.62,83.55],[-35.09,83.65],[-27.1,83.52],[-20.85,82.73],[-22.69,82.34],[-26.52,82.3],[-31.9,82.2],[-31.4,82.02],[-27.86,82.13],[-24.85,81.79],[-22.9,82.09],[-22.07,81.73],[-23.17,81.15],[-20.62,81.52],[-15.77,81.91],[-12.77,81.72],[-12.21,81.29],[-16.28,80.58],[-16.85,80.35],[-20.05,80.18],[-17.73,80.13],[-18.9,79.4],[-19.7,78.75],[-19.67,77.64],[-18.47,76.98],[-20.04,76.94],[-21.68,76.63],[-19.83,76.1],[-19.6,75.25],[-20.67,75.16],[-19.37,74.3],[-21.59,74.22],[-20.44,73.82],[-20.76,73.46],[-22.17,73.31],[-23.57,73.31],[-22.31,72.63],[-22.3,72.18],[-24.28,72.6],[-24.79,72.33],[-23.44,72.08],[-22.13,71.47],[-21.75,70.66],[-23.54,70.47],[-24.31,70.86],[-25.54,71.43],[-25.2,70.75],[-26.36,70.23],[-23.73,70.18],[-22.35,70.13],[-25.03,69.26],[-27.75,68.47],[-30.67,68.12],[-31.78,68.12],[-32.81,67.74],[-34.2,66.68],[-36.35,65.98],[-37.04,65.94],[-38.37,65.69],[-39.81,65.46],[-40.67,64.84],[-40.68,64.14],[-41.19,63.48],[-42.82,62.68],[-42.42,61.9],[-42.87,61.07],[-43.38,60.1],[-44.79,60.04],[-46.26,60.85],[-48.26,60.86],[-49.23,61.41],[-49.9,62.38],[-51.63,63.63],[-52.14,64.28],[-52.28,65.18],[-53.66,66.1],[-53.3,66.84],[-53.97,67.19],[-52.98,68.36],[-51.48,68.73],[-51.08,69.15],[-50.87,69.93],[-52.02,69.57],[-52.56,69.43],[-53.46,69.28],[-54.68,69.61],[-54.75,70.29],[-54.36,70.82],[-53.43,70.84],[-51.39,70.57],[-53.11,71.2],[-54.01,71.55],[-55,71.41],[-55.83,71.66],[-54.72,72.59],[-55.33,72.96],[-56.12,73.65],[-57.33,74.71],[-58.6,75.1],[-58.59,75.52],[-61.27,76.1],[-63.39,76.18],[-66.07,76.14],[-68.5,76.06],[-69.67,76.38],[-71.4,77.01],[-68.78,77.32],[-66.76,77.38],[-71.04,77.64],[-73.3,78.04],[-73.16,78.43],[-69.37,78.91],[-65.71,79.4],[-65.32,79.76],[-68.02,80.12],[-67.15,80.52],[-63.69,81.21],[-62.24,81.32],[-62.65,81.77],[-60.28,82.03],[-57.21,82.19],[-54.14,82.2],[-53.04,81.89],[-50.39,82.44],[-48,82.06],[-46.6,81.99],[-44.52,81.66],[-46.9,82.2],[-46.76,82.63]]]}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[6.19,49.46],[6.66,49.2],[8.1,49.02],[7.59,48.33],[7.47,47.62],[7.19,47.45],[6.74,47.54],[6.77,47.29],[6.04,46.73],[6.02,46.27],[6.5,46.43],[6.84,45.99],[6.8,45.71],[7.1,45.33],[6.75,45.03],[7.01,44.25],[7.55,44.13],[7.44,43.69],[6.53,43.13],[4.56,43.4],[3.1,43.07],[2.99,42.47],[1.83,42.34],[0.7,42.8],[0.34,42.58],[-1.5,43.03],[-1.9,43.42],[-1.38,44.02],[-1.19,46.01],[-2.23,47.06],[-2.96,47.57],[-4.49,47.95],[-4.59,48.68],[-3.3,48.9],[-1.62,48.64],[-1.94,49.78],[-0.99,49.35],[1.34,50.13],[1.64,50.95],[2.51,51.15],[2.66,50.8],[3.12,50.78],[3.59,50.38],[4.29,49.91],[4.8,49.99],[5.68,49.53],[5.9,49.44],[6.19,49.46]]],[[[8.75,42.63],[9.39,43.01],[9.56,42.15],[9.23,41.38],[8.78,41.58],[8.54,42.26],[8.75,42.63]]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[35.72,32.71],[35.54,32.39],[35.18,32.53],[34.98,31.87],[35.22,31.75],[34.97,31.62],[34.93,31.35],[35.4,31.49],[35.42,31.1],[34.92,29.5],[34.82,29.76],[34.27,31.22],[34.55,31.55],[34.49,31.61],[34.75,32.07],[34.95,32.83],[35.1,33.08],[35.13,33.09],[35.46,33.09],[35.55,33.26],[35.82,33.28],[35.84,32.87],[35.7,32.72],[35.72,32.71]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[35.82,33.28],[35.55,33.26],[35.46,33.09],[35.13,33.09],[35.48,33.91],[35.98,34.61],[36,34.65],[36.45,34.59],[36.61,34.2],[36.07,33.82],[35.82,33.28]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[9.48,30.31],[9.06,32.1],[8.44,32.51],[8.43,32.75],[7.61,33.34],[7.53,34.1],[8.14,34.66],[8.38,35.48],[8.22,36.43],[8.42,36.95],[9.51,37.35],[10.21,37.23],[10.18,36.72],[11.03,37.09],[11.1,36.9],[10.6,36.41],[10.59,35.95],[10.94,35.7],[10.81,34.83],[10.15,34.33],[10.34,33.79],[10.86,33.77],[11.11,33.29],[11.49,33.14],[11.43,32.37],[10.95,32.08],[10.64,31.76],[9.95,31.38],[10.06,30.96],[9.97,30.54],[9.48,30.31]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-8.69,27.4],[-8.66,27.59],[-8.67,27.66],[-8.67,28.84],[-7.06,29.58],[-6.06,29.73],[-5.24,30],[-4.86,30.5],[-3.69,30.9],[-3.65,31.64],[-3.07,31.72],[-2.62,32.09],[-1.31,32.26],[-1.13,32.65],[-1.39,32.86],[-1.73,33.92],[-1.79,34.53],[-2.17,35.17],[-1.21,35.72],[-0.13,35.89],[0.5,36.3],[1.47,36.61],[3.16,36.78],[4.82,36.86],[5.32,36.72],[6.26,37.11],[7.33,37.12],[7.74,36.89],[8.42,36.95],[8.22,36.43],[8.38,35.48],[8.14,34.66],[7.53,34.1],[7.61,33.34],[8.43,32.75],[8.44,32.51],[9.06,32.1],[9.48,30.31],[9.8,29.42],[9.86,28.96],[9.68,28.14],[9.76,27.69],[9.63,27.14],[9.71,26.51],[9.32,26.09],[9.91,25.37],[9.95,24.94],[10.31,24.38],[10.77,24.56],[11.56,24.1],[12,23.47],[8.57,21.57],[5.68,19.6],[4.27,19.16],[3.16,19.06],[3.15,19.69],[2.68,19.86],[2.06,20.14],[1.82,20.61],[-1.55,22.79],[-4.92,24.97],[-8.69,27.4]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[35.54,32.39],[35.72,32.71],[36.83,32.31],[38.79,33.38],[39.2,32.16],[39,32.01],[37,31.51],[38,30.51],[37.67,30.34],[37.5,30],[36.74,29.87],[36.5,29.51],[36.07,29.2],[34.95,29.36],[34.92,29.5],[35.42,31.1],[35.4,31.49],[35.54,31.78],[35.54,32.39]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[39.2,32.16],[38.79,33.38],[41.01,34.42],[41.38,35.63],[41.29,36.36],[41.84,36.61],[42.35,37.23],[42.78,37.39],[43.94,37.26],[44.29,37],[44.77,37.17],[45.42,35.98],[46.08,35.68],[46.15,35.09],[45.65,34.75],[45.42,33.97],[46.11,33.02],[47.34,32.47],[47.85,31.71],[47.68,30.98],[48,30.98],[48.02,30.45],[48.57,29.93],[47.98,29.98],[47.3,30.06],[46.57,29.1],[44.71,29.18],[41.89,31.19],[40.4,31.89],[39.2,32.16]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[48.57,29.93],[48.02,30.45],[48,30.98],[47.68,30.98],[47.85,31.71],[47.34,32.47],[46.11,33.02],[45.42,33.97],[45.65,34.75],[46.15,35.09],[46.08,35.68],[45.42,35.98],[44.77,37.17],[44.22,37.97],[44.42,38.28],[44.11,39.43],[44.79,39.71],[44.95,39.34],[45.46,38.87],[46.14,38.74],[46.51,38.77],[47.68,39.51],[48.06,39.58],[48.35,39.29],[48.01,38.79],[48.63,38.27],[48.88,38.32],[49.2,37.58],[50.15,37.37],[50.84,36.87],[52.26,36.7],[53.83,36.96],[53.92,37.2],[54.8,37.39],[55.51,37.96],[56.18,37.94],[56.62,38.12],[57.33,38.03],[58.44,37.52],[59.23,37.41],[60.38,36.53],[61.12,36.49],[61.21,35.65],[60.8,34.4],[60.53,33.68],[60.96,33.53],[60.54,32.98],[60.86,32.18],[60.94,31.55],[61.7,31.38],[61.78,30.74],[60.87,29.83],[61.37,29.3],[61.77,28.7],[62.73,28.26],[62.75,27.38],[63.23,27.22],[63.32,26.76],[61.88,26.24],[61.5,25.08],[59.61,25.38],[58.52,25.61],[57.4,25.74],[56.97,26.97],[56.49,27.14],[55.72,26.96],[54.72,26.48],[53.49,26.81],[52.48,27.58],[51.52,27.87],[50.85,28.81],[50.11,30.15],[49.58,29.99],[48.94,30.32],[48.57,29.93]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[35.72,32.71],[35.7,32.72],[35.84,32.87],[35.82,33.28],[36.07,33.82],[36.61,34.2],[36.45,34.59],[36,34.65],[35.9,35.41],[36.15,35.82],[36.42,36.04],[36.69,36.26],[36.74,36.82],[37.07,36.62],[38.17,36.9],[38.7,36.71],[39.52,36.72],[40.68,37.09],[41.21,37.07],[42.35,37.23],[41.84,36.61],[41.29,36.36],[41.38,35.63],[41.01,34.42],[38.79,33.38],[36.83,32.31],[35.72,32.71]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[46.51,38.77],[46.14,38.74],[45.74,39.32],[45.74,39.47],[45.3,39.47],[45,39.74],[44.79,39.71],[44.4,40],[43.66,40.25],[43.75,40.74],[43.58,41.09],[44.97,41.25],[45.18,40.99],[45.56,40.81],[45.36,40.56],[45.89,40.22],[45.61,39.9],[46.04,39.63],[46.48,39.46],[46.51,38.77]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[11.03,58.86],[11.47,59.43],[12.3,60.12],[12.63,61.29],[11.99,61.8],[11.93,63.13],[12.58,64.07],[13.57,64.05],[13.92,64.44],[13.56,64.79],[15.11,66.19],[16.11,67.3],[16.77,68.01],[17.73,68.01],[17.99,68.57],[19.88,68.41],[20.03,69.07],[20.64,69.11],[21.98,68.62],[23.54,67.94],[23.57,66.4],[23.9,66.01],[22.18,65.72],[21.21,65.03],[21.37,64.41],[19.78,63.61],[17.85,62.75],[17.12,61.34],[17.83,60.64],[18.79,60.08],[17.87,58.95],[16.83,58.72],[16.45,57.04],[15.88,56.1],[14.67,56.2],[14.1,55.41],[12.94,55.36],[12.62,56.31],[11.79,57.44],[11.03,58.86]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[28.18,56.17],[29.23,55.92],[29.37,55.67],[29.9,55.79],[30.88,55.55],[30.97,55.08],[30.76,54.81],[31.38,54.16],[31.79,53.97],[31.73,53.79],[32.41,53.62],[32.69,53.35],[32.3,53.13],[31.5,53.17],[31.3,53.07],[31.54,52.74],[31.79,52.1],[30.93,52.04],[30.62,51.82],[30.56,51.32],[30.16,51.42],[29.26,51.37],[28.99,51.6],[28.62,51.43],[28.24,51.57],[27.46,51.59],[26.34,51.83],[25.33,51.91],[24.55,51.89],[24.01,51.62],[23.53,51.58],[23.51,52.02],[23.2,52.49],[23.8,52.69],[23.81,53.09],[23.53,53.47],[23.48,53.91],[24.45,53.91],[25.54,54.28],[25.77,54.85],[26.59,55.17],[26.49,55.61],[27.1,55.78],[28.18,56.17]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[31.79,52.1],[32.16,52.06],[32.41,52.29],[32.72,52.24],[33.75,52.33],[34.39,51.77],[34.14,51.57],[34.22,51.26],[35.02,51.21],[35.38,50.77],[35.36,50.58],[36.62,50.23],[37.39,50.38],[38.01,49.92],[38.59,49.93],[40.07,49.6],[40.08,49.31],[39.67,48.78],[39.9,48.23],[39.74,47.9],[38.77,47.83],[38.26,47.55],[38.22,47.1],[37.42,47.02],[36.76,46.7],[35.82,46.65],[34.96,46.27],[35.01,45.74],[34.86,45.77],[34.73,45.97],[34.41,46],[33.7,46.22],[33.44,45.97],[33.3,46.08],[31.74,46.33],[31.67,46.71],[30.75,46.58],[30.38,46.03],[29.6,45.29],[29.15,45.46],[28.68,45.3],[28.23,45.49],[28.49,45.6],[28.66,45.94],[28.94,46.26],[28.86,46.44],[29.07,46.52],[29.17,46.38],[29.76,46.35],[30.03,46.42],[29.84,46.53],[29.91,46.67],[29.56,46.93],[29.41,47.35],[29.05,47.51],[29.12,47.85],[28.67,48.12],[28.26,48.16],[27.52,48.47],[26.86,48.37],[26.62,48.22],[26.2,48.22],[25.95,47.99],[25.21,47.89],[24.87,47.74],[24.4,47.98],[23.76,47.99],[23.14,48.1],[22.71,47.88],[22.64,48.15],[22.08,48.42],[22.28,48.83],[22.56,49.09],[22.78,49.03],[22.52,49.48],[23.43,50.31],[23.92,50.43],[24.03,50.71],[23.53,51.58],[24.01,51.62],[24.55,51.89],[25.33,51.91],[26.34,51.83],[27.46,51.59],[28.24,51.57],[28.62,51.43],[28.99,51.6],[29.26,51.37],[30.16,51.42],[30.56,51.32],[30.62,51.82],[30.93,52.04],[31.79,52.1]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[23.48,53.91],[23.53,53.47],[23.81,53.09],[23.8,52.69],[23.2,52.49],[23.51,52.02],[23.53,51.58],[24.03,50.71],[23.92,50.43],[23.43,50.31],[22.52,49.48],[22.78,49.03],[22.56,49.09],[21.61,49.47],[20.89,49.33],[20.42,49.43],[19.82,49.22],[19.32,49.57],[18.91,49.44],[18.85,49.5],[18.39,49.99],[17.65,50.05],[17.56,50.36],[16.87,50.47],[16.72,50.22],[16.18,50.42],[16.24,50.7],[15.49,50.78],[15.02,51.11],[14.61,51.75],[14.69,52.09],[14.44,52.63],[14.07,52.98],[14.35,53.25],[14.12,53.76],[14.8,54.05],[16.36,54.51],[17.62,54.85],[18.62,54.68],[18.7,54.44],[19.66,54.43],[20.89,54.31],[22.73,54.33],[23.24,54.22],[23.48,53.91]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[16.98,48.12],[16.9,47.72],[16.34,47.71],[16.53,47.5],[16.2,46.85],[16.01,46.68],[15.14,46.66],[14.63,46.43],[13.81,46.51],[12.38,46.77],[12.15,47.11],[11.17,46.94],[11.05,46.75],[10.44,46.89],[9.93,46.92],[9.48,47.1],[9.63,47.35],[9.6,47.52],[9.89,47.58],[10.4,47.3],[10.54,47.57],[11.42,47.52],[12.14,47.7],[12.62,47.67],[12.93,47.47],[13.03,47.64],[12.88,48.29],[13.24,48.42],[13.6,48.88],[14.34,48.56],[14.9,48.96],[15.26,49.04],[16.03,48.73],[16.5,48.79],[16.96,48.6],[16.88,48.47],[16.98,48.12]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[22.08,48.42],[22.64,48.15],[22.71,47.88],[22.1,47.67],[21.63,46.99],[21.02,46.32],[20.22,46.13],[19.6,46.17],[18.83,45.91],[18.46,45.76],[17.63,45.95],[16.88,46.38],[16.57,46.5],[16.37,46.84],[16.2,46.85],[16.53,47.5],[16.34,47.71],[16.9,47.72],[16.98,48.12],[17.49,47.87],[17.86,47.76],[18.7,47.88],[18.78,48.08],[19.18,48.11],[19.66,48.27],[19.77,48.2],[20.24,48.33],[20.48,48.56],[20.8,48.62],[21.87,48.32],[22.08,48.42]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[26.62,48.22],[26.86,48.37],[27.52,48.47],[28.26,48.16],[28.67,48.12],[29.12,47.85],[29.05,47.51],[29.41,47.35],[29.56,46.93],[29.91,46.67],[29.84,46.53],[30.03,46.42],[29.76,46.35],[29.17,46.38],[29.07,46.52],[28.86,46.44],[28.94,46.26],[28.66,45.94],[28.49,45.6],[28.23,45.49],[28.05,45.95],[28.16,46.37],[28.13,46.81],[27.55,47.41],[27.23,47.83],[26.92,48.12],[26.62,48.22]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[28.23,45.49],[28.68,45.3],[29.15,45.46],[29.6,45.29],[29.63,45.04],[29.14,44.82],[28.84,44.91],[28.56,43.71],[27.97,43.81],[27.24,44.18],[26.07,43.94],[25.57,43.69],[24.1,43.74],[23.33,43.9],[22.94,43.82],[22.66,44.24],[22.47,44.41],[22.71,44.58],[22.46,44.7],[22.15,44.48],[21.56,44.77],[21.48,45.18],[20.87,45.42],[20.76,45.74],[20.22,46.13],[21.02,46.32],[21.63,46.99],[22.1,47.67],[22.71,47.88],[23.14,48.1],[23.76,47.99],[24.4,47.98],[24.87,47.74],[25.21,47.89],[25.95,47.99],[26.2,48.22],[26.62,48.22],[26.92,48.12],[27.23,47.83],[27.55,47.41],[28.13,46.81],[28.16,46.37],[28.05,45.95],[28.23,45.49]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[26.49,55.61],[26.59,55.17],[25.77,54.85],[25.54,54.28],[24.45,53.91],[23.48,53.91],[23.24,54.22],[22.73,54.33],[22.65,54.58],[22.76,54.86],[22.31,55.02],[21.27,55.19],[21.05,56.03],[22.2,56.34],[23.88,56.27],[24.86,56.37],[25,56.16],[25.53,56.1],[26.49,55.61]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[27.29,57.47],[27.77,57.24],[27.86,56.76],[28.18,56.17],[27.1,55.78],[26.49,55.61],[25.53,56.1],[25,56.16],[24.86,56.37],[23.88,56.27],[22.2,56.34],[21.05,56.03],[21.09,56.78],[21.58,57.41],[22.52,57.75],[23.32,57.01],[24.12,57.03],[24.31,57.79],[25.17,57.97],[25.6,57.85],[26.46,57.48],[27.29,57.47]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[27.98,59.48],[28.13,59.3],[27.42,58.72],[27.72,57.79],[27.29,57.47],[26.46,57.48],[25.6,57.85],[25.17,57.97],[24.31,57.79],[24.43,58.38],[24.06,58.26],[23.43,58.61],[23.34,59.19],[24.6,59.47],[25.86,59.61],[26.95,59.45],[27.98,59.48]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[14.12,53.76],[14.35,53.25],[14.07,52.98],[14.44,52.63],[14.69,52.09],[14.61,51.75],[15.02,51.11],[14.57,51],[14.31,51.12],[14.06,50.93],[13.34,50.73],[12.97,50.48],[12.24,50.27],[12.41,49.97],[12.52,49.55],[13.03,49.31],[13.6,48.88],[13.24,48.42],[12.88,48.29],[13.03,47.64],[12.93,47.47],[12.62,47.67],[12.14,47.7],[11.42,47.52],[10.54,47.57],[10.4,47.3],[9.89,47.58],[9.6,47.52],[8.52,47.83],[8.32,47.61],[7.47,47.62],[7.59,48.33],[8.1,49.02],[6.66,49.2],[6.19,49.46],[6.24,49.9],[6.04,50.13],[6.16,50.8],[5.99,51.85],[6.59,51.85],[6.84,52.23],[7.09,53.14],[6.91,53.48],[7.1,53.69],[7.94,53.75],[8.12,53.53],[8.8,54.02],[8.57,54.4],[8.53,54.96],[9.28,54.83],[9.92,54.98],[9.94,54.6],[10.95,54.36],[10.94,54.01],[11.96,54.2],[12.52,54.47],[13.65,54.08],[14.12,53.76]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[22.66,44.24],[22.94,43.82],[23.33,43.9],[24.1,43.74],[25.57,43.69],[26.07,43.94],[27.24,44.18],[27.97,43.81],[28.56,43.71],[28.04,43.29],[27.68,42.58],[28,42.01],[27.14,42.14],[26.12,41.83],[26.11,41.33],[25.2,41.23],[24.49,41.58],[23.69,41.31],[22.95,41.34],[22.88,42],[22.38,42.32],[22.55,42.46],[22.44,42.58],[22.61,42.9],[22.98,43.21],[22.5,43.64],[22.41,44.01],[22.66,44.24]]]}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[26.29,35.3],[26.16,35],[24.72,34.92],[24.73,35.09],[23.51,35.28],[23.7,35.71],[24.25,35.37],[25.03,35.43],[25.77,35.35],[25.75,35.18],[26.29,35.3]]],[[[22.95,41.34],[23.69,41.31],[24.49,41.58],[25.2,41.23],[26.11,41.33],[26.12,41.83],[26.6,41.56],[26.29,40.94],[26.06,40.82],[25.45,40.85],[24.92,40.95],[23.72,40.69],[24.41,40.12],[23.9,39.96],[23.34,39.96],[22.82,40.48],[22.63,40.26],[22.85,39.66],[23.35,39.19],[22.97,38.97],[23.53,38.51],[24.02,38.22],[24.04,37.65],[23.11,37.92],[23.41,37.41],[22.78,37.3],[23.15,36.42],[22.49,36.41],[21.67,36.84],[21.3,37.64],[21.12,38.31],[20.73,38.77],[20.22,39.34],[20.15,39.63],[20.62,40.11],[20.67,40.44],[21,40.58],[21.02,40.84],[21.67,40.93],[22.06,41.15],[22.6,41.13],[22.76,41.3],[22.95,41.34]]]]}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[44.77,37.17],[44.29,37],[43.94,37.26],[42.78,37.39],[42.35,37.23],[41.21,37.07],[40.68,37.09],[39.52,36.72],[38.7,36.71],[38.17,36.9],[37.07,36.62],[36.74,36.82],[36.69,36.26],[36.42,36.04],[36.15,35.82],[35.78,36.28],[36.16,36.65],[35.55,36.56],[34.71,36.8],[34.03,36.22],[32.51,36.11],[31.7,36.64],[30.62,36.68],[30.39,36.26],[29.7,36.15],[28.73,36.68],[27.64,36.66],[27.05,37.65],[26.32,38.21],[26.8,38.99],[26.17,39.46],[27.28,40.42],[28.82,40.46],[29.24,41.22],[31.15,41.09],[32.35,41.74],[33.51,42.02],[35.17,42.04],[36.91,41.33],[38.35,40.95],[39.51,41.1],[40.37,41.01],[41.55,41.54],[42.62,41.58],[43.58,41.09],[43.75,40.74],[43.66,40.25],[44.4,40],[44.79,39.71],[44.11,39.43],[44.42,38.28],[44.22,37.97],[44.77,37.17]]],[[[26.12,41.83],[27.14,42.14],[28,42.01],[28.11,41.62],[28.99,41.3],[28.81,41.06],[27.62,41],[27.19,40.69],[26.36,40.15],[26.04,40.62],[26.06,40.82],[26.29,40.94],[26.6,41.56],[26.12,41.83]]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[21.02,40.84],[21,40.58],[20.67,40.44],[20.62,40.11],[20.15,39.63],[19.98,39.69],[19.96,39.91],[19.41,40.25],[19.32,40.73],[19.4,41.41],[19.54,41.72],[19.37,41.88],[19.31,42.2],[19.74,42.69],[19.8,42.5],[20.07,42.59],[20.28,42.32],[20.52,42.22],[20.59,41.86],[20.46,41.52],[20.6,41.09],[21.02,40.84]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[16.57,46.5],[16.88,46.38],[17.63,45.95],[18.46,45.76],[18.83,45.91],[19.07,45.52],[19.39,45.24],[19.01,44.86],[18.55,45.08],[17.86,45.07],[17,45.23],[16.53,45.21],[16.32,45],[15.96,45.23],[15.75,44.82],[16.24,44.35],[16.46,44.04],[16.91,43.67],[17.3,43.45],[17.67,43.03],[18.56,42.65],[18.45,42.48],[17.51,42.85],[16.93,43.21],[16.01,43.51],[15.18,44.24],[15.38,44.32],[14.92,44.74],[14.9,45.08],[14.26,45.23],[13.95,44.8],[13.66,45.14],[13.68,45.48],[13.71,45.5],[14.41,45.47],[14.6,45.64],[14.93,45.47],[15.33,45.45],[15.32,45.73],[15.67,45.83],[15.77,46.24],[16.57,46.5]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[9.6,47.52],[9.63,47.35],[9.48,47.1],[9.93,46.92],[10.44,46.89],[10.36,46.48],[9.92,46.31],[9.18,46.44],[8.97,46.04],[8.49,46],[8.32,46.16],[7.76,45.82],[7.27,45.78],[6.84,45.99],[6.5,46.43],[6.02,46.27],[6.04,46.73],[6.77,47.29],[6.74,47.54],[7.19,47.45],[7.47,47.62],[8.32,47.61],[8.52,47.83],[9.6,47.52]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[6.04,50.13],[6.24,49.9],[6.19,49.46],[5.9,49.44],[5.68,49.53],[5.78,50.09],[6.04,50.13]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[6.16,50.8],[6.04,50.13],[5.78,50.09],[5.68,49.53],[4.8,49.99],[4.29,49.91],[3.59,50.38],[3.12,50.78],[2.66,50.8],[2.51,51.15],[3.31,51.35],[4.05,51.27],[4.97,51.47],[5.61,51.04],[6.16,50.8]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[6.91,53.48],[7.09,53.14],[6.84,52.23],[6.59,51.85],[5.99,51.85],[6.16,50.8],[5.61,51.04],[4.97,51.47],[4.05,51.27],[3.31,51.35],[3.83,51.62],[4.71,53.09],[6.08,53.51],[6.91,53.48]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-9.03,41.88],[-8.67,42.14],[-8.26,42.28],[-8.01,41.79],[-7.42,41.79],[-7.25,41.92],[-6.67,41.88],[-6.39,41.38],[-6.85,41.11],[-6.86,40.33],[-7.03,40.19],[-7.07,39.71],[-7.5,39.63],[-7.1,39.03],[-7.37,38.37],[-7.03,38.08],[-7.17,37.8],[-7.54,37.43],[-7.45,37.1],[-7.86,36.84],[-8.38,36.98],[-8.9,36.87],[-8.75,37.65],[-8.84,38.27],[-9.29,38.36],[-9.53,38.74],[-9.45,39.39],[-9.05,39.76],[-8.98,40.16],[-8.77,40.76],[-8.79,41.18],[-8.99,41.54],[-9.03,41.88]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-7.45,37.1],[-7.54,37.43],[-7.17,37.8],[-7.03,38.08],[-7.37,38.37],[-7.1,39.03],[-7.5,39.63],[-7.07,39.71],[-7.03,40.19],[-6.86,40.33],[-6.85,41.11],[-6.39,41.38],[-6.67,41.88],[-7.25,41.92],[-7.42,41.79],[-8.01,41.79],[-8.26,42.28],[-8.67,42.14],[-9.03,41.88],[-8.98,42.59],[-9.39,43.03],[-7.98,43.75],[-6.76,43.57],[-5.41,43.57],[-4.35,43.4],[-3.52,43.46],[-1.9,43.42],[-1.5,43.03],[0.34,42.58],[0.7,42.8],[1.83,42.34],[2.99,42.47],[3.04,41.89],[2.09,41.23],[0.81,41.01],[0.72,40.68],[0.11,40.12],[-0.28,39.31],[0.11,38.74],[-0.47,38.29],[-0.68,37.64],[-1.44,37.44],[-2.15,36.67],[-3.41,36.66],[-4.37,36.68],[-5,36.32],[-5.38,35.95],[-5.87,36.03],[-6.24,36.37],[-6.52,36.94],[-7.45,37.1]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-6.2,53.87],[-6.03,53.15],[-6.79,52.26],[-8.56,51.67],[-9.98,51.82],[-9.17,52.86],[-9.69,53.88],[-8.33,54.67],[-7.57,55.13],[-7.37,54.6],[-7.57,54.06],[-6.95,54.07],[-6.2,53.87]]]}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[10.44,46.89],[11.05,46.75],[11.17,46.94],[12.15,47.11],[12.38,46.77],[13.81,46.51],[13.7,46.02],[13.94,45.59],[13.14,45.74],[12.33,45.38],[12.38,44.89],[12.26,44.6],[12.59,44.09],[13.53,43.59],[14.03,42.76],[15.14,41.96],[15.92,41.96],[16.17,41.74],[15.89,41.54],[16.79,41.18],[17.52,40.88],[18.38,40.36],[18.48,40.17],[18.29,39.81],[17.74,40.28],[16.87,40.44],[16.45,39.8],[17.17,39.43],[17.05,38.9],[16.63,38.84],[16.1,37.99],[15.68,37.91],[15.69,38.22],[15.89,38.75],[16.11,38.96],[15.72,39.54],[15.41,40.05],[15,40.17],[14.7,40.61],[14.06,40.79],[13.63,41.19],[12.89,41.25],[12.11,41.71],[11.19,42.36],[10.51,42.93],[10.2,43.92],[9.7,44.04],[8.89,44.37],[8.43,44.23],[7.85,43.77],[7.44,43.69],[7.55,44.13],[7.01,44.25],[6.75,45.03],[7.1,45.33],[6.8,45.71],[6.84,45.99],[7.27,45.78],[7.76,45.82],[8.32,46.16],[8.49,46],[8.97,46.04],[9.18,46.44],[9.92,46.31],[10.36,46.48],[10.44,46.89]]],[[[14.76,38.14],[15.52,38.23],[15.16,37.44],[15.31,37.13],[15.1,36.62],[14.33,37],[13.83,37.1],[12.43,37.61],[12.57,38.13],[13.74,38.04],[14.76,38.14]]],[[[8.71,40.9],[9.21,41.21],[9.81,40.5],[9.67,39.18],[9.21,39.24],[8.81,38.91],[8.43,39.17],[8.39,40.38],[8.16,40.95],[8.71,40.9]]]]}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[9.92,54.98],[9.28,54.83],[8.53,54.96],[8.12,55.52],[8.09,56.54],[8.26,56.81],[8.54,57.11],[9.42,57.17],[9.78,57.45],[10.58,57.73],[10.55,57.22],[10.25,56.89],[10.37,56.61],[10.91,56.46],[10.67,56.08],[10.37,56.19],[9.65,55.47],[9.92,54.98]]],[[[12.37,56.11],[12.69,55.61],[12.09,54.8],[11.04,55.36],[10.9,55.78],[12.37,56.11]]]]}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[-6.2,53.87],[-6.95,54.07],[-7.57,54.06],[-7.37,54.6],[-7.57,55.13],[-6.73,55.17],[-5.66,54.56],[-6.2,53.87]]],[[[-3.09,53.4],[-2.95,53.98],[-3.62,54.6],[-3.63,54.61],[-4.84,54.79],[-5.08,55.06],[-4.72,55.51],[-5.05,55.78],[-5.59,55.31],[-5.65,56.27],[-6.15,56.78],[-5.79,57.82],[-5.01,58.63],[-4.21,58.55],[-3,58.63],[-4.07,57.55],[-3.05,57.69],[-1.96,57.68],[-2.22,56.87],[-3.12,55.97],[-2.09,55.91],[-2.01,55.8],[-1.11,54.62],[-0.43,54.46],[0.19,53.32],[0.47,52.93],[1.68,52.74],[1.56,52.1],[1.05,51.81],[1.45,51.29],[0.55,50.77],[-0.79,50.78],[-2.49,50.5],[-2.96,50.7],[-3.62,50.23],[-4.54,50.34],[-5.24,49.96],[-5.78,50.16],[-4.31,51.21],[-3.41,51.43],[-3.42,51.43],[-4.98,51.59],[-5.27,51.99],[-4.22,52.3],[-4.77,52.84],[-4.58,53.5],[-3.09,53.4]]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-14.51,66.46],[-14.74,65.81],[-13.61,65.13],[-14.91,64.36],[-17.79,63.68],[-18.66,63.5],[-19.97,63.64],[-22.76,63.96],[-21.78,64.4],[-23.96,64.89],[-22.19,65.08],[-22.23,65.38],[-24.33,65.61],[-23.65,66.26],[-22.13,66.41],[-20.58,65.73],[-19.06,66.28],[-17.8,65.99],[-16.17,66.53],[-14.51,66.46]]]}},{"type":"Feature","geometry":{"type":"MultiPolygon","coordinates":[[[[46.41,41.86],[46.69,41.83],[47.37,41.22],[47.81,41.15],[47.99,41.41],[48.58,41.81],[49.11,41.28],[49.62,40.57],[50.09,40.53],[50.39,40.26],[49.57,40.18],[49.39,39.4],[49.22,39.05],[48.86,38.82],[48.88,38.32],[48.63,38.27],[48.01,38.79],[48.35,39.29],[48.06,39.58],[47.68,39.51],[46.51,38.77],[46.48,39.46],[46.04,39.63],[45.61,39.9],[45.89,40.22],[45.36,40.56],[45.56,40.81],[45.18,40.99],[44.97,41.25],[45.22,41.41],[45.96,41.12],[46.5,41.06],[46.64,41.18],[46.15,41.72],[46.41,41.86]]],[[[46.14,38.74],[45.46,38.87],[44.95,39.34],[44.79,39.71],[45,39.74],[45.3,39.47],[45.74,39.47],[45.74,39.32],[46.14,38.74]]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[39.95,43.44],[40.08,43.55],[40.92,43.38],[42.4,43.22],[43.76,42.74],[43.93,42.55],[44.54,42.71],[45.47,42.5],[45.78,42.09],[46.41,41.86],[46.15,41.72],[46.64,41.18],[46.5,41.06],[45.96,41.12],[45.22,41.41],[44.97,41.25],[43.58,41.09],[42.62,41.58],[41.55,41.54],[41.7,41.96],[41.45,42.64],[40.88,43.01],[40.32,43.13],[39.95,43.44]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[13.81,46.51],[14.63,46.43],[15.14,46.66],[16.01,46.68],[16.2,46.85],[16.37,46.84],[16.57,46.5],[15.77,46.24],[15.67,45.83],[15.32,45.73],[15.33,45.45],[14.93,45.47],[14.6,45.64],[14.41,45.47],[13.71,45.5],[13.94,45.59],[13.7,46.02],[13.81,46.51]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[28.59,69.07],[28.45,68.36],[29.98,67.7],[29.05,66.94],[30.22,65.81],[29.54,64.95],[30.44,64.2],[30.04,63.55],[31.52,62.87],[31.14,62.36],[30.21,61.78],[28.07,60.5],[26.26,60.42],[24.5,60.06],[22.87,59.85],[22.29,60.39],[21.32,60.72],[21.54,61.7],[21.06,62.61],[21.54,63.19],[22.44,63.82],[24.73,64.9],[25.4,65.11],[25.3,65.53],[23.9,66.01],[23.57,66.4],[23.54,67.94],[21.98,68.62],[20.64,69.11],[21.25,69.37],[22.36,68.84],[23.66,68.89],[24.73,68.65],[25.69,69.09],[26.18,69.83],[27.73,70.16],[29.01,69.77],[28.59,69.07]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[22.56,49.09],[22.28,48.83],[22.08,48.42],[21.87,48.32],[20.8,48.62],[20.48,48.56],[20.24,48.33],[19.77,48.2],[19.66,48.27],[19.18,48.11],[18.78,48.08],[18.7,47.88],[17.86,47.76],[17.49,47.87],[16.98,48.12],[16.88,48.47],[16.96,48.6],[17.1,48.82],[17.54,48.8],[17.89,48.9],[17.91,49],[18.11,49.04],[18.17,49.27],[18.4,49.31],[18.56,49.49],[18.85,49.5],[18.91,49.44],[19.32,49.57],[19.82,49.22],[20.42,49.43],[20.89,49.33],[21.61,49.47],[22.56,49.09]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[15.02,51.11],[15.49,50.78],[16.24,50.7],[16.18,50.42],[16.72,50.22],[16.87,50.47],[17.56,50.36],[17.65,50.05],[18.39,49.99],[18.85,49.5],[18.56,49.49],[18.4,49.31],[18.17,49.27],[18.11,49.04],[17.91,49],[17.89,48.9],[17.54,48.8],[17.1,48.82],[16.96,48.6],[16.5,48.79],[16.03,48.73],[15.26,49.04],[14.9,48.96],[14.34,48.56],[13.6,48.88],[13.03,49.31],[12.52,49.55],[12.41,49.97],[12.24,50.27],[12.97,50.48],[13.34,50.73],[14.06,50.93],[14.31,51.12],[14.57,51],[15.02,51.11]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[32.73,35.14],[32.8,35.14],[32.95,35.39],[33.67,35.37],[34.58,35.67],[33.9,35.25],[33.98,35.06],[33.87,35.09],[33.68,35.02],[33.53,35.04],[33.47,35],[33.46,35.1],[33.38,35.16],[33.19,35.17],[32.92,35.09],[32.73,35.14]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[32.73,35.14],[32.92,35.09],[33.19,35.17],[33.38,35.16],[33.46,35.1],[33.47,35],[33.53,35.04],[33.68,35.02],[33.87,35.09],[33.98,35.06],[34,34.98],[32.98,34.57],[32.49,34.7],[32.26,35.1],[32.73,35.14]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[-2.17,35.17],[-1.79,34.53],[-1.73,33.92],[-1.39,32.86],[-1.13,32.65],[-1.31,32.26],[-2.62,32.09],[-3.07,31.72],[-3.65,31.64],[-3.69,30.9],[-4.86,30.5],[-5.24,30],[-6.06,29.73],[-7.06,29.58],[-8.67,28.84],[-8.67,27.66],[-8.82,27.66],[-8.79,27.12],[-9.41,27.09],[-9.74,26.86],[-10.19,26.86],[-10.55,26.99],[-11.39,26.88],[-11.72,26.1],[-12.03,26.03],[-12.5,24.77],[-13.89,23.69],[-14.22,22.31],[-14.63,21.86],[-14.75,21.5],[-17,21.42],[-17.02,21.42],[-16.97,21.89],[-16.59,22.16],[-16.26,22.68],[-16.33,23.02],[-15.98,23.72],[-15.42,24.36],[-15.09,24.52],[-14.82,25.1],[-14.8,25.64],[-14.44,26.25],[-13.78,26.62],[-13.14,27.64],[-13.12,27.65],[-12.62,28.04],[-11.69,28.15],[-10.9,28.83],[-10.4,29.1],[-9.56,29.93],[-9.82,31.18],[-9.43,32.04],[-9.3,32.57],[-8.66,33.24],[-7.66,33.7],[-6.91,34.11],[-6.24,35.15],[-5.93,35.76],[-5.19,35.76],[-4.59,35.33],[-3.64,35.4],[-2.6,35.18],[-2.17,35.17]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[25,22],[25,20],[23.85,20],[23.84,19.58],[19.85,21.49],[15.86,23.41],[14.85,22.86],[14.14,22.49],[13.58,23.04],[12,23.47],[11.56,24.1],[10.77,24.56],[10.31,24.38],[9.95,24.94],[9.91,25.37],[9.32,26.09],[9.71,26.51],[9.63,27.14],[9.76,27.69],[9.68,28.14],[9.86,28.96],[9.8,29.42],[9.48,30.31],[9.97,30.54],[10.06,30.96],[9.95,31.38],[10.64,31.76],[10.95,32.08],[11.43,32.37],[11.49,33.14],[12.66,32.79],[13.08,32.88],[13.92,32.71],[15.24,32.27],[15.71,31.38],[16.61,31.18],[18.02,30.76],[19.09,30.27],[19.58,30.53],[20.05,30.99],[19.82,31.75],[20.13,32.24],[20.85,32.71],[21.54,32.84],[22.89,32.64],[23.24,32.19],[23.61,32.19],[23.93,32.02],[24.92,31.9],[25.17,31.57],[24.8,31.09],[24.96,30.66],[24.7,30.04],[25,29.24],[25,25.68],[25,22]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[18.56,42.65],[17.67,43.03],[17.3,43.45],[16.91,43.67],[16.46,44.04],[16.24,44.35],[15.75,44.82],[15.96,45.23],[16.32,45],[16.53,45.21],[17,45.23],[17.86,45.07],[18.55,45.08],[19.01,44.86],[19.37,44.86],[19.12,44.42],[19.6,44.04],[19.45,43.57],[19.22,43.52],[19.03,43.43],[18.71,43.2],[18.56,42.65]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[22.38,42.32],[22.88,42],[22.95,41.34],[22.76,41.3],[22.6,41.13],[22.06,41.15],[21.67,40.93],[21.02,40.84],[20.6,41.09],[20.46,41.52],[20.59,41.86],[20.72,41.85],[20.76,42.05],[21.35,42.21],[21.58,42.25],[21.92,42.3],[22.38,42.32]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[18.83,45.91],[19.6,46.17],[20.22,46.13],[20.76,45.74],[20.87,45.42],[21.48,45.18],[21.56,44.77],[22.15,44.48],[22.46,44.7],[22.71,44.58],[22.47,44.41],[22.66,44.24],[22.41,44.01],[22.5,43.64],[22.98,43.21],[22.61,42.9],[22.44,42.58],[22.55,42.46],[22.38,42.32],[21.92,42.3],[21.58,42.25],[21.54,42.32],[21.66,42.44],[21.77,42.68],[21.63,42.68],[21.44,42.86],[21.27,42.91],[21.14,43.07],[20.96,43.13],[20.81,43.27],[20.63,43.22],[20.5,42.88],[20.26,42.81],[20.34,42.9],[19.96,43.11],[19.63,43.21],[19.49,43.35],[19.22,43.52],[19.45,43.57],[19.6,44.04],[19.12,44.42],[19.37,44.86],[19.01,44.86],[19.39,45.24],[19.07,45.52],[18.83,45.91]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[20.07,42.59],[19.8,42.5],[19.74,42.69],[19.31,42.2],[19.37,41.88],[19.16,41.96],[18.88,42.28],[18.45,42.48],[18.56,42.65],[18.71,43.2],[19.03,43.43],[19.22,43.52],[19.49,43.35],[19.63,43.21],[19.96,43.11],[20.34,42.9],[20.26,42.81],[20.07,42.59]]]}},{"type":"Feature","geometry":{"type":"Polygon","coordinates":[[[20.59,41.86],[20.52,42.22],[20.28,42.32],[20.07,42.59],[20.26,42.81],[20.5,42.88],[20.63,43.22],[20.81,43.27],[20.96,43.13],[21.14,43.07],[21.27,42.91],[21.44,42.86],[21.63,42.68],[21.77,42.68],[21.66,42.44],[21.54,42.32],[21.58,42.25],[21.35,42.21],[20.76,42.05],[20.72,41.85],[20.59,41.86]]]}}]};
+let _cityPts=[];
+function numberSights(c){const pts=[];
+ if(c.slat)pts.push({lat:c.slat,lng:c.slng,kind:"stay"});
+ let n=0;
+ c.see.forEach(function(s){if(s.lat){n++;s._n=n;pts.push({lat:s.lat,lng:s.lng,kind:"sight",num:n});}else{s._n=null;}});
+ (c.ex||[]).forEach(function(e){if(e.lat)pts.push({lat:e.lat,lng:e.lng,kind:"tour"});});
+ return pts;}
+function lng2px(lng,z){return (lng+180)/360*256*Math.pow(2,z);}
+function lat2px(lat,z){var s=Math.sin(lat*Math.PI/180);s=Math.max(-0.9999,Math.min(0.9999,s));return (0.5-Math.log((1+s)/(1-s))/(4*Math.PI))*256*Math.pow(2,z);}
+function pickZoom(bb,target){for(var z=15;z>=2;z--){var w=lng2px(bb[2],z)-lng2px(bb[0],z),h=lat2px(bb[1],z)-lat2px(bb[3],z);if(Math.max(w,h)<=target)return z;}return 2;}
+function tileURL(z,x,y){var s="abcd".charAt(((x+y)%4+4)%4);return "https://"+s+".basemaps.cartocdn.com/light_all/"+z+"/"+x+"/"+y+".png";}
+function geoPathsM(P,bb){var a=bb[0],b=bb[1],c=bb[2],d=bb[3],out="";
+ for(var fi=0;fi<LAND.features.length;fi++){var g=LAND.features[fi].geometry,polys=g.type==="Polygon"?[g.coordinates]:g.coordinates;
+  for(var pi=0;pi<polys.length;pi++){var poly=polys[pi];
+   for(var ri=0;ri<poly.length;ri++){var ring=poly[ri],any=false;
+    for(var t=0;t<ring.length;t++){var p=ring[t];if(p[0]>=a-4&&p[0]<=c+4&&p[1]>=b-4&&p[1]<=d+4){any=true;break;}}
+    if(!any)continue;
+    var seg="";for(var k=0;k<ring.length;k++){var q=P(ring[k][0],ring[k][1]);seg+=(k?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1);}
+    out+=seg+"Z";}}}
+ return out;}
+function markerNum(x,y,num,r,sw,fs){return '<circle cx="'+x+'" cy="'+y+'" r="'+r.toFixed(1)+'" fill="#1A1712" stroke="#fff" stroke-width="'+sw.toFixed(2)+'"/><text x="'+x+'" y="'+(parseFloat(y)+fs*0.34).toFixed(1)+'" font-size="'+fs.toFixed(1)+'" text-anchor="middle" fill="#fff" font-family="-apple-system,sans-serif" font-weight="700">'+num+'</text>';}
+function mercMap(bb,pad,target,label,overlay){
+ var a=bb[0],s=bb[1],e=bb[2],n=bb[3],dx=(e-a)*pad||0.08,dy=(n-s)*pad||0.08;a-=dx;e+=dx;s-=dy;n+=dy;
+ var z=pickZoom([a,s,e,n],target),ox=lng2px(a,z),oy=lat2px(n,z),W=lng2px(e,z)-ox,H=lat2px(s,z)-oy;
+ var P=function(lng,lat){return [lng2px(lng,z)-ox,lat2px(lat,z)-oy];};
+ var max=Math.pow(2,z),tx0=Math.floor(ox/256),tx1=Math.floor((ox+W)/256),ty0=Math.floor(oy/256),ty1=Math.floor((oy+H)/256),tiles="";
+ for(var tx=tx0;tx<=tx1;tx++){for(var ty=ty0;ty<=ty1;ty++){if(ty<0||ty>=max)continue;var xx=((tx%max)+max)%max,ix=(tx*256-ox).toFixed(1),iy=(ty*256-oy).toFixed(1),u=tileURL(z,xx,ty);
+  tiles+='<image x="'+ix+'" y="'+iy+'" width="257" height="257" href="'+u+'" xlink:href="'+u+'" preserveAspectRatio="none"/>';}}
+ var WD=W.toFixed(0),HD=H.toFixed(0);
+ var land='<path d="'+geoPathsM(P,[a,s,e,n])+'" fill="#E9E1CF" stroke="#C9BB96" stroke-width="'+(W/240).toFixed(2)+'" fill-rule="evenodd"/>';
+ return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="'+WD+'" height="'+HD+'" viewBox="0 0 '+WD+' '+HD+'" preserveAspectRatio="xMidYMid meet" role="img" aria-label="'+label+'"><rect width="'+WD+'" height="'+HD+'" fill="#D7E1DC"/>'+land+'<g>'+tiles+'</g>'+overlay(P,W)+'</svg>';}
+function routeSVG(){
+ var lngs=CITIES.map(function(c){return c.lng;}),lats=CITIES.map(function(c){return c.lat;});
+ var bb=[Math.min.apply(null,lngs),Math.min.apply(null,lats),Math.max.apply(null,lngs),Math.max.apply(null,lats)];
+ return mercMap(bb,0.16,760,"Map of the route across Europe",function(P,W){
+  var r=Math.max(8,W*0.015),sw=Math.max(1.4,W*0.0035),fs=r*1.25;
+  var pj=CITIES.map(function(c){var q=P(c.lng,c.lat);return [q[0].toFixed(1),q[1].toFixed(1)];});
+  var line='<polyline points="'+pj.map(function(p){return p[0]+","+p[1];}).join(" ")+'" fill="none" stroke="#A4631A" stroke-width="'+(sw*1.4).toFixed(2)+'" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="'+(sw*0.6).toFixed(2)+' '+(sw*3.4).toFixed(2)+'" opacity="0.92"/>';
+  var dots=CITIES.map(function(c,i){return markerNum(pj[i][0],pj[i][1],i+1,r,sw,fs);}).join("");
+  return line+dots;});}
+function citySVG(pts){
+ if(!pts||!pts.length)return "";
+ var lngs=pts.map(function(p){return p.lng;}),lats=pts.map(function(p){return p.lat;});
+ var bb=[Math.min.apply(null,lngs),Math.min.apply(null,lats),Math.max.apply(null,lngs),Math.max.apply(null,lats)];
+ var ms=0.012;if(bb[2]-bb[0]<ms){var mx=(bb[0]+bb[2])/2;bb[0]=mx-ms/2;bb[2]=mx+ms/2;}if(bb[3]-bb[1]<ms){var my=(bb[1]+bb[3])/2;bb[1]=my-ms/2;bb[3]=my+ms/2;}
+ return mercMap(bb,0.2,760,"City orientation map",function(P,W){
+  var r=Math.max(8,W*0.016),sw=Math.max(1.4,W*0.004),fs=r*1.2;
+  var stay=null;pts.forEach(function(p){if(p.kind==="stay")stay=p;});
+  var lines="";if(stay){var sc=P(stay.lng,stay.lat);lines=pts.filter(function(p){return p!==stay;}).map(function(p){var q=P(p.lng,p.lat);return '<line x1="'+sc[0].toFixed(1)+'" y1="'+sc[1].toFixed(1)+'" x2="'+q[0].toFixed(1)+'" y2="'+q[1].toFixed(1)+'" stroke="#A4631A" stroke-width="'+sw.toFixed(2)+'" stroke-dasharray="'+(sw*1.6).toFixed(2)+' '+(sw*2).toFixed(2)+'" opacity="0.7"/>';}).join("");}
+  var dots=pts.map(function(p){var q=P(p.lng,p.lat),x=q[0].toFixed(1),y=q[1].toFixed(1);
+   if(p.kind==="stay")return '<circle cx="'+x+'" cy="'+y+'" r="'+(r*1.05).toFixed(1)+'" fill="#A67C1A" stroke="#fff" stroke-width="'+sw.toFixed(2)+'"/><circle cx="'+x+'" cy="'+y+'" r="'+(r*0.34).toFixed(1)+'" fill="#fff"/>';
+   if(p.kind==="tour")return '<circle cx="'+x+'" cy="'+y+'" r="'+r.toFixed(1)+'" fill="#D85A3C" stroke="#fff" stroke-width="'+sw.toFixed(2)+'"/><circle cx="'+x+'" cy="'+y+'" r="'+(r*0.32).toFixed(1)+'" fill="#fff"/>';
+   return markerNum(x,y,p.num,r,sw,fs);}).join("");
+  return lines+dots;});}
+function paint(id,svg){const el=document.getElementById(id);if(!el||!svg)return;
+ try{const doc=new DOMParser().parseFromString(svg,"image/svg+xml");
+  if(doc&&!doc.getElementsByTagName("parsererror").length){const root=doc.documentElement;
+   if(root&&String(root.nodeName).toLowerCase()==="svg"){while(el.firstChild)el.removeChild(el.firstChild);el.appendChild(document.importNode(root,true));return;}}
+ }catch(e){}
+ try{el.innerHTML=svg;if(el.getElementsByTagName("svg").length)return;}catch(e){}
+ try{el.innerHTML='<img alt="map" src="data:image/svg+xml,'+enc(svg)+'">';}catch(e){}}
+// ===== TABS =====
+function renderOverview(){let h=`<div class="hero"><div class="deco-hero">${sunburstSVG()}${confettiSVG()}<div class="deco-frame"></div><div class="deco-eye">Itinerary &middot; MMXXVI</div><div class="deco-title">Europe</div><div class="deco-rule"><i></i><span class="dia"></span><i></i></div><div class="deco-sub">Aanchal &amp; Mom &middot; Jun 22 &ndash; Jul 20<br>Six countries &middot; ten cities</div></div></div>`;
+ h+=statusHTML();
+ h+=sec("The route")+`<div class="smap smap--route" id="routemap"></div><div class="legend"><span>Stops 1–10, in order. Tap a stop below to open it.</span></div>`;
+ h+=sec("Your stops")+CITIES.map((c,i)=>`<div class="stop" onclick="go('cities','${c.id}')"><span class="idx">${i+1}</span><span class="cdot" style="background:${c.accent}"></span><span class="stop-nm">${c.name}</span><span class="stop-dt">${shortRange(c)}</span>${ic('chevron','chev')}</div>`).join("");
+ h+=sec("Book these now")+`<div class="alert"><div class="alert-h">${ic('alert')}A few sights need timed tickets — grab them before they sell out</div><ul>`+
+ `<li><b>The Last Supper, Milan</b> — likely sold out for late June; only a guided-tour slot may remain. Check immediately. <a href="https://lastsupper.shop/" target="_blank" rel="noopener">official</a></li>`+
+ `<li><b>Colosseum, Rome</b> — €18, released 30 days out, sells out in summer. Book now (Arena floor is best). <a href="https://ticketing.colosseo.it/en/" target="_blank" rel="noopener">official</a></li>`+
+ `<li><b>Louvre &amp; Eiffel Tower, Paris</b> — both need timed entry; book ahead. <a href="https://www.louvre.fr/en" target="_blank" rel="noopener">Louvre</a> · <a href="https://www.toureiffel.paris/en" target="_blank" rel="noopener">Eiffel</a></li>`+
+ `<li><b>Book of Kells &amp; Kilmainham Gaol, Dublin</b> — timed / guided, book a few days ahead. <a href="https://kilmainhamgaolmuseum.ie/" target="_blank" rel="noopener">Gaol</a></li>`+
+ `<li><b>Edinburgh Castle</b> — pre-book a timed slot. <a href="https://www.edinburghcastle.scot/" target="_blank" rel="noopener">official</a></li>`+
+ `<li><b>Notre-Dame, Paris</b> — free entry; the optional slot opens only 2–3 days before, or expect a queue.</li></ul></div>`;
+ h+=sec("Money & power")+`<div class="card lead">Euro € in Austria, Italy, France and Ireland. <b>Swiss francs (CHF)</b> in Switzerland and <b>£ pounds</b> in Scotland — cards work almost everywhere. Outlets: a <b>Type J</b> adapter for Switzerland, <b>Type G</b> for Ireland and Scotland, and <b>Type C/E/F</b> for the rest — a universal adapter covers it all. Everything is 230V, so US phone and laptop chargers work fine; you just need the plug shape.</div>`;
+ h+=sec("Works offline")+`<div class="card lead">Add this page to your Home Screen (Share, then <b>Add to Home Screen</b>) and it opens like an app. All the trip details, day plans and Directions buttons work with <b>no signal</b>. The maps show the route and your pin positions offline; the street layer fills in when you have a connection, and the Directions buttons open your Maps app. Download offline maps there before you go for full detail.</div>`;
+ h+=`<p class="disc">Hours, prices and ticket rules were checked in June 2026 and can change — always reconfirm on the official site before you go.</p>`;
+ $("#overview").innerHTML=h;
+ paint("routemap",routeSVG());}
+
+function renderDay(){const t=todayISO(),i=DAYS.indexOf(_vd),dn=i+1,city=currentCity(_vd);
+ const evs=EVENTS.filter(e=>e.date===_vd).slice().sort((a,b)=>a.sort.localeCompare(b.sort));
+ let h=`<div class="hero" style="padding-bottom:0"><div class="overline">The day</div></div>`;
+ h+=`<div class="stepper"><button class="step" ${i<=0?"disabled":""} onclick="stepDay(-1)">${ic('chevron')}<span style="display:none"></span></button><div class="stephead"><div class="sd">Day ${dn} · ${fmtDate(_vd)}${_vd===t?" · today":""}</div><div class="sc">${city?`<span class="cdot" style="background:${city.accent}"></span>${city.name}`:"In transit"}</div></div><button class="step" ${i>=DAYS.length-1?"disabled":""} onclick="stepDay(1)">${ic('chevron')}</button></div>`;
+ const back=document.querySelectorAll(".step")[0];
+ if(_vd!==t)h+=`<div class="btns" style="justify-content:center;margin:0 0 8px"><span class="btn" onclick="openToday()">${ic('pin')} Jump to today</span></div>`;
+ if(evs.length){h+=sec("Plan")+evs.map(e=>tlItem(e,_vd===t)).join("");}
+ else{h+=`<div class="card lead" style="text-align:center">No fixed plans — a free day${city?" in "+city.name:""}.</div>`;}
+ if(city){h+=sec("Where you're staying")+stayCard(city)+`<div class="btns"><span class="btn solid" onclick="go('cities','${city.id}')">${ic('buildings')} Open ${city.name} guide</span></div>`;}
+ $("#today").innerHTML=h;
+ // flip the back chevron to point left
+ const steps=document.querySelectorAll("#today .step .ic");if(steps[0])steps[0].style.transform="scaleX(-1)";}
+function stepDay(d){const j=Math.max(0,Math.min(DAYS.length-1,DAYS.indexOf(_vd)+d));_vd=DAYS[j];renderDay();try{window.scrollTo(0,0);}catch(e){}}
+function openToday(){_vd=clampToday();renderDay();switchTab("today");}
+
+function renderTimeline(){const t=todayISO(),by={};EVENTS.forEach(e=>{(by[e.date]=by[e.date]||[]).push(e);});
+ let h=`<div class="hero" style="padding-bottom:0"><div class="overline">Day by day</div><div class="title" style="font-size:30px">Timeline</div></div>`;
+ Object.keys(by).sort().forEach(d=>{h+=`<div class="tl-day">${fmtDate(d)}${d===t?" · today":""}</div>`;by[d].sort((a,b)=>a.sort.localeCompare(b.sort)).forEach(e=>{h+=tlItem(e,d===t);});});
+ $("#timeline").innerHTML=h;}
+
+function renderBookings(){let h=`<div class="hero" style="padding-bottom:0"><div class="overline">Confirmations</div><div class="title" style="font-size:30px">Bookings</div></div>`;
+ h+=sec("Flights")+BK_FLIGHTS.map(f=>`<div class="row"><div class="row-ic">${ic('plane')}</div><div class="row-main"><div class="row-t">${f.r}</div><div class="row-s">${f.n} · ${f.d}</div></div></div>`).join("");
+ h+=sec("Trains")+BK_TRAINS.map(t=>`<div class="row"><div class="row-ic">${ic('train')}</div><div class="row-main"><div class="row-t">${t.r}</div><div class="row-s">${t.d}</div></div></div>`).join("");
+ h+=sec("Stays")+CITIES.map(c=>`<div class="row"><div class="row-ic">${ic('home')}</div><div class="row-main"><div class="row-t">${c.name} — ${c.stay.n}</div><div class="row-s">${shortRange(c)} · in ${c.stay.ci} · out ${c.stay.co}${c.stay.conf?" · "+c.stay.conf:""}</div></div></div>`).join("");
+ h+=sec("Tours")+BK_TOURS.map(t=>`<div class="row"><div class="row-ic">${ic('star')}</div><div class="row-main"><div class="row-t">${t.n}</div><div class="row-s">${t.d} · Meet: ${t.m}</div></div></div>`).join("");
+ $("#bookings").innerHTML=h;}
+
+function cityHTML(c){const F=COUNTRY[c.country];_cityPts=numberSights(c);
+ let h=`<div class="cityhead"><div class="ch-row"><span class="cdot" style="background:${c.accent}"></span><span class="ch-ctry">${c.country}</span><span class="ch-nights">${c.nights} night${c.nights>1?"s":""}</span></div><div class="ch-name">${c.name}</div><div class="ch-rule"></div><div class="ch-sub">${shortRange(c)} · ${F.lang}</div></div>`;
+ if(c.arrive)h+=sec("Getting in")+`<div class="row"><div class="row-ic">${ic(c.arrive.ic)}</div><div class="row-main"><div class="row-t">${c.arrive.codes}</div><div class="row-s">${c.arrive.txt}</div></div></div>`;
+ if(c.ex&&c.ex.length)h+=sec("Booked excursions")+c.ex.map(e=>`<div class="card"><div class="see-h">${ic('star')}<span class="see-nm" style="margin-left:2px">${e.n}</span></div><div class="wy" style="margin-top:5px">${e.date} · ${e.time} · Meet: ${e.meet}</div><div class="btns"><a class="btn solid" href="${e.lat?dDir(e.lat,e.lng):qDir(e.meet)}" target="_blank" rel="noopener">${ic('nav')} Meeting point</a></div></div>`).join("");
+ if(_cityPts.length){const ll=c.slat?`${c.slat},${c.slng}`:`${c.lat},${c.lng}`;
+  h+=sec("Map")+`<div class="smap smap--city" id="citymap"></div><div class="legend"><span><i style="background:#A67C1A"></i>Stay</span><span><i style="background:#1A1916"></i>Sights, numbered</span><span>${ic('star')}Tour</span></div><p class="note">Live map — tap a pin for its name and directions. Numbers match the list below. A geographic map of where things sit, drawn into the file so it always shows. Tap Open in Maps below for streets and live directions.</p><div class="btns"><a class="btn" href="https://maps.apple.com/?ll=${ll}&q=${enc(c.name)}" target="_blank" rel="noopener">${ic('map')} Apple Maps</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=${ll}" target="_blank" rel="noopener">${ic('map')} Google Maps</a></div>`;}
+ h+=sec("Your stay")+stayCard(c);
+ h+=sec("See & do")+`<div class="card" style="padding:2px 16px">`+c.see.map(s=>seeHTML(s,c)).join("")+`</div>`;
+ h+=sec("Eat")+c.eat.map(f=>`<a href="${qDir(f.n+", "+c.name)}" target="_blank" rel="noopener"><span class="e-ic">${ic('utensils')}</span><span class="e-main"><span class="e-nm">${f.n}</span>${f.nt?`<span class="e-nt">${f.nt}</span>`:""}</span>${ic('chevron','chev')}</a>`).join("");
+ h+=sec(c.country+" basics")+`<div class="facts"><div class="fact">${ic('coin')}<b>Currency</b><span>${F.cur}</span></div><div class="fact">${ic('globe')}<b>Language</b><span>${F.lang}</span></div><div class="fact">${ic('plug')}<b>Plugs</b><span>${F.plug}</span></div><div class="fact">${ic('phone')}<b>Emergency</b><span>${F.emerg}</span></div><div class="fact">${ic('info')}<b>Tipping</b><span>${F.tip}</span></div></div>`;
+ return h;}
+
+function renderCities(initialId){const cur=currentCity(todayISO());const def=initialId||(cur?cur.id:CITIES[0].id);
+ $("#cities").innerHTML=`<div class="chips">`+CITIES.map(c=>`<button data-c="${c.id}" onclick="selectCity('${c.id}')"><span class="cdot" style="background:${c.accent}"></span>${c.name}</button>`).join("")+`</div><div id="citybox"></div>`;
+ selectCity(def);}
+function selectCity(id){const c=CITIES.find(x=>x.id===id);
+ document.querySelectorAll(".chips button").forEach(b=>b.classList.toggle("active",b.dataset.c===id));
+ $("#citybox").innerHTML=cityHTML(c);
+ if(_cityPts.length)paint("citymap",citySVG(_cityPts));
+ const chip=document.querySelector('.chips button[data-c="'+id+'"]');if(chip&&chip.scrollIntoView){try{chip.scrollIntoView({inline:"center",block:"nearest"});}catch(e){}}}
+
+// ===== NAV =====
+const NAV=[["overview","Overview","compass"],["timeline","Timeline","calendar"],["today","Today","pin"],["cities","Cities","buildings"],["bookings","Bookings","ticket"]];
+function buildNav(){$(".nav .inner").innerHTML=NAV.map(n=>`<button data-t="${n[0]}" onclick="${n[0]==='today'?'openToday()':"switchTab('"+n[0]+"')"}">${ic(n[2])}<span>${n[1]}</span></button>`).join("");}
+function switchTab(t){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));const el=$("#"+t);if(el)el.classList.add("active");
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.t===t));
+ try{window.scrollTo(0,0);}catch(e){}}
+function go(tab,cityId){switchTab(tab);if(tab==="cities")renderCities(cityId);}
+
+// ===== INIT =====
+function safe(fn){try{fn();}catch(e){}}
+buildNav();
+safe(renderOverview);safe(renderDay);safe(renderTimeline);safe(renderBookings);safe(renderCities);
+switchTab("overview");
+</script>
+</body>
+</html>
